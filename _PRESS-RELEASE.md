@@ -17,28 +17,29 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+  The Great Carpool Project
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  We want anyone who travels to work and is looking to save money and save the enviroment.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Our webpage is going let you save the environment! We will be bringing people together to easily setup carpooling. You will be able to see everyone around who is available for carpooling. You can then communicate to them throughout app and setup carpooling times. You will also be able to set up days you are traveling and set up itinerates for multiple carpools.
 
 ## Problem ##
-  > Describe the problem your product solves.
+  We will be making it easy to set up carpools with other people.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+  We will be helping customers save both their wallets and the environt by easily setting carpools. 
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+  Carpooling made easy!
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+  Simply go to our website. Enter you home, and work information. Then you will be able to see who around your home and work is avaible to carpool!
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  "My and my husband found 2 other to carpool with! Now there are 2 less cars on our crowded roads!"
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+  Thank you for your time!! Please head to our website and see who is available to carpool with!!
