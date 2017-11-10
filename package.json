@@ -4,8 +4,14 @@
   "description": "Carpool finding helper",
   "main": "app.js",
   "scripts": {
+    "start": "node server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Jeffrey Stocker",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.2",
+    "request": "^2.83.0",
+    "socket.io": "^2.0.4"
+  }
 }
