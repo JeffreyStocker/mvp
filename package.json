@@ -2,10 +2,11 @@
   "name": "mvp-carpool",
   "version": "1.0.0",
   "description": "Carpool finding helper",
-  "main": "app.js",
+  "main": "server/app.js",
   "scripts": {
     "start": "node server/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "nodemon": "nodemon server/app.js"
   },
   "author": "Jeffrey Stocker",
   "license": "ISC",
@@ -14,6 +15,7 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
     "mongoose": "^4.13.1",
     "request": "^2.83.0",
     "socket.io": "^2.0.4",
