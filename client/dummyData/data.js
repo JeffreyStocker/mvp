@@ -1,7 +1,8 @@
-{[
+[
   {
     user: {
-      name: 'bob'
+      firstName: 'Bob',
+      lastName: "Smith"
     }, 
     locations: [
       {
@@ -16,9 +17,11 @@
       }
     ]
   },
+  
   {
     user: {
-      name: 'samuel'
+      firstName: 'samuel',
+      lastName: "Smith"
     }, 
     locations: [
       {
@@ -33,4 +36,4 @@
       }
     ]
   }
-]}
+]

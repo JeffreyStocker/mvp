@@ -1,25 +1,23 @@
 <!DOCTYPE HTML> 
-<html lang="en"> 
+<html lang="en" ng-app="app"> 
   <head> 
     <meta http-equiv="content-type" content="text/html; charset=utf-8"> 
     <meta name="viewport" content="width=device-width">
     <title>The GREAT CARPOOL PROJECT</title> 
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href=".\bower_components\bootstrap\dist\css\bootstrap.min.css">
-    <script>
-      
-      
-    </script>
+    <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist\css\bootstrap.min.css">
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-route/angular-route.min.js"></script>
   </head> 
-  <html ng-app="MyApp">
+<body>
   
   <div>THE GREAT CARPOOL PROJECT</div>
-    <div ng-controller="mainController"> {{name}} </div>
-    
-  </div>
+  <app name="$ctrl.name"> app loading</app>
 </body> 
-<script src="bower_components/angular/angular.min.js"></script>
-<script src="bower_components\angular-route/angular-route.min.js"></script>
 <script src="scripts.js"></script>
+<script src="controllers/mainController.js"></script>
+<script src="components/app.js"></script>
+<script src="components/list.js"></script>
+<script src="components/test.js"></script>
 </html>
 
