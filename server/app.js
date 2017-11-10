@@ -1,17 +1,20 @@
 var express = require('express');
 var app = express();
 var request = require('request')
-// var io = require('../node_modules/socket.io/lib/socket.js')
-var io = require('socket.io')
+// var io = require('socket.io')
+
+///// local modules /////
+var db = require('./database.js')
+
 
 ////  user set variables ///////
-var port = 8080;
-
+var userVar = require("./userVariables.js")
+var port = userVar.port
 
 /////// routing ///////
 app.use(express.static('client'))
 
-app.post((req, res) => {
+app.post((req, res) => {env
   res.end()
 })
 
@@ -24,4 +27,5 @@ app.listen(port, () => {
   console.log('App is listening on port: ', port)
 })
 
-console.log ('env', process.env.test)
+///// playing with enviromental Variables
+// console.log ('env', process.env.test)
