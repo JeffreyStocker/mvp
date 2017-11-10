@@ -1,5 +1,4 @@
-var app = angular.module("myApp", []); 
-app.controller('myCtrl', function ($scope) {
-
-
-}); 
+angular.module("MyApp", [])
+.controller("HelloController", function($scope) {
+  $scope.name = "Bob"
+});
