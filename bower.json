@@ -1,0 +1,18 @@
+{
+  "name": "mvp-carpool",
+  "description": "Carpool finding helper",
+  "main": "app.js",
+  "authors": [
+    "Jeffrey Stocker"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

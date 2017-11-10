@@ -1,0 +1,11 @@
+{
+  "name": "mvp-carpool",
+  "version": "1.0.0",
+  "description": "Carpool finding helper",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jeffrey Stocker",
+  "license": "ISC"
+}
