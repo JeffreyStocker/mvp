@@ -14,6 +14,26 @@ var initMap = function() {  //places a marker in the map
   });
 }
 
+window.parsePostDataToCreateMarkers = function (data){
+  if (!data) { return }
+  var home = data.homeAddress_geolocation.result[0].geometry.location || null;
+  if (home) {
+    createMarker(home.lat, home.lng)
+  }
+  var work = data.workAddress_geolocation.result[0].geometry.location || null;
+  if (work) {
+    createMarker(work.lat, work.lng)
+  }
+}
+
+var createMarker = function (lat, long) {
+  markers.push(new google.maps.Marker({
+    position: {lat: lat, lng: long}, 
+    map: map, 
+    animation: google.maps.Animation.DROP
+  }))
+}
+
 
 var createRandomMarker = function () {
     var lat = (37.74 + Math.random() / 10);
