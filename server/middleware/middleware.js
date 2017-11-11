@@ -5,8 +5,9 @@ module.exports.putTogetherBody = (req, res, next) => {
   req.on('data', (data) => {body += data})
   req.on ('end', () => {
     try {
-      res.body = JSON.parse(res.body)
+      res.body = JSON.parse(body)
     } catch (err) {
+      console.log ('body was not JSON')
       res.body = body;
     }
     next();

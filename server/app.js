@@ -17,7 +17,7 @@ var port = userVar.port
 app.use(express.static('client'))
 
 app.use('/',middleware.listener)
-app.post('/', middleware.putTogetherBody)
+app.post('/', middleware.putTogetherBody, db.middleSaveToDatabase)
 app.post('/', (req, res) => {
   
   // res.status(201)

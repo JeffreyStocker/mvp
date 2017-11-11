@@ -20,18 +20,38 @@ mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
     // console.log ('db connect error')
   });
 
+  
+  /// work in progress basic ideas
+  var carpoolSchema = new Schema ({
+    username: {type: String, unique: true},
+    homeAddress: String, 
+    workAddress: String, 
+    range: Number, 
+  })
+  
+  var Carpool = mongoose.model('Carpool', carpoolSchema)
 
-/// work in progress basic ideas
-var carpoolSchema = new Schema ({
-  user: String,
-  homeLocation: String, 
-  workLocation: String, 
-  range: String, 
 
-})
+  ///// database middleware /////////////
 
-// , (err, success) => {
-//   console.log('test')
-//   if (err) {
-//   } else {
-//   }
+  module.exports.middleSaveToDatabase = function (req, res, next) {
+    var user = new Carpool({
+      username: res.body.name, 
+      homeAddress: res.body.homeAddress,
+      workAddress: res.body.workAddress, 
+      range: res.body.range
+    })
+    user.save((err, response) => {
+      if (err && err.code === 11000) {
+        console.log('Duplicate File') //need to update instead
+      } else 
+      if (err) {
+        console.log('error saving to database:', err)
+      } else {
+        next();
+      }
+    })
+
+
+
+}
