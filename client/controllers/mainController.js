@@ -8,6 +8,10 @@ angular.module("app", [])
 .component('app', {
   binding: {name: name},
   controller: 'mainController',
-  template: '<div>component test</div> \
-              <list name="$ctrl.name"> loading List </list>'
+  template: 
+  '<div>component test</div> \
+   <list name="$ctrl.name"> loading List </list> \
+   <map></map>\
+   <userform>userForm Not Loading</userform> \
+   '
 });
