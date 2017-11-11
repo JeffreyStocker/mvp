@@ -11,7 +11,6 @@ var app = angular.module("app", [])
 })
 .component('app', {
   binding: {name: name},
-  controller: 'mainController',
   template: 
   `
   <button id="sendclick" ng-click="test()" >Add Markerrer</button>  

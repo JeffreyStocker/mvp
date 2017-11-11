@@ -20,8 +20,10 @@ app.use('/',middleware.listener)
 app.post('/', middleware.putTogetherBody)
 app.post('/', (req, res) => {
   
-  res.status(201)
-  res.end('yes')
+  // res.status(201)
+  console.log ('res.body', res.body)
+  res.status(201).send(res.body)
+  // res.json(req.body)
 })
 
 app.get((req, res) => {

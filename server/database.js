@@ -10,15 +10,15 @@ try {
 }
 
 // mongoose.connect(databaseLocation)
-
-// mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
-//   .then ((status) => {
-//     console.log ('db successful connected')
-//   })
-//   .catch(err=> {
-//     console.log('db connect error: ', err)
-//     // console.log ('db connect error')
-//   });
+console.log('database: ', databaseLocation)
+mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
+  .then ((status) => {
+    console.log ('db successful connected')
+  })
+  .catch(err=> {
+    console.log('db connect error: ', err)
+    // console.log ('db connect error')
+  });
 
 
 /// work in progress basic ideas
