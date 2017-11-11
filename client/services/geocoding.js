@@ -21,3 +21,4 @@
 // The preferred language has a small influence on the set of results that the API chooses to return, and the order in which they are returned. The geocoder interprets abbreviations differently depending on language, such as the abbreviations for street types, or synonyms that may be valid in one language but not in another. For example, utca and tér are synonyms for street in Hungarian.
 // region — The region code, specified as a ccTLD ("top-level domain") two-character value. This parameter will only influence, not fully restrict, results from the geocoder. (For more information see Region Biasing below.)
 // components — A components filter with elements separated by a pipe (|). The components filter is required if the request doesn't include an address. Each element in the components filter consists of a component:value pair, and fully restricts the results from the geocoder. See more information about component filtering below.
+

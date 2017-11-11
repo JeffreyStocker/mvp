@@ -1,6 +1,8 @@
 angular.module('app').component('test', {
   template: '<span>test: Name: {{$ctrl.test}} </span>',
-  controller: 'mainController',
+  controller: function (getData) {
+
+  },
   bindings: {
     test: '<'
   }

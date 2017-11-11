@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="./bower_components/bootstrap/dist\css\bootstrap.min.css">
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   </head> 
 <body>
   
@@ -15,11 +16,20 @@
   <app name="$ctrl.name"> app loading</app>
 </body> 
 <script src="js/scripts.js"></script>
+
 <script src="controllers/mainController.js"></script>
+
 <script src="components/userForm.js"></script>
 <script src="components/map.js"></script>
 <script src="components/list.js"></script>
 <script src="components/test.js"></script>
+
+<script src="services/geocoding.js"></script>
+<script src="services/get.js"></script>
+<script src="services/post.js"></script>
+
+
+
 <script async defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtkcksA-IjZRh_FUmHWnQGpxAaP8U21j4&callback=map">
 </script>
