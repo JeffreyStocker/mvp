@@ -10,7 +10,7 @@ try {
 }
 
 // mongoose.connect(databaseLocation)
-console.log('database: ', databaseLocation)
+// console.log('database: ', databaseLocation)
 mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
   .then ((status) => {
     console.log ('db successful connected')
@@ -25,7 +25,9 @@ mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
   var carpoolSchema = new Schema ({
     username: {type: String, unique: true},
     homeAddress: String, 
+    homeAddress_geolocation: Schema.Types.Mixed, 
     workAddress: String, 
+    workAddress_geolocation: Schema.Types.Mixed,
     range: Number, 
   })
   
@@ -39,6 +41,8 @@ mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
       username: req.body.name, 
       homeAddress: req.body.homeAddress || "",
       workAddress: req.body.workAddress || "", 
+      homeAddress_geolocation: req.body.homeAddress_geolocation || '',
+      workAddress_geolocation: req.body.workAddress_geolocation || '',
       range: req.body.range || 5
     }
 
@@ -49,6 +53,7 @@ mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
           if (err) {
             console.log('error updating database:', err)
           } else {
+            console.log('saved to database', raw)
             next()
           }
         })
