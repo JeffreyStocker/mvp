@@ -2,7 +2,6 @@ angular.module('app').component ('userform', {
   binding: {},
   controller: 'mainController',
   templateUrl: 'templates/form.html' 
-
 })
 
 

@@ -9,11 +9,10 @@ var app = angular.module("app", [])
   binding: {name: name},
   controller: 'mainController',
   template: 
-  '<div>component test</div> \
-   <list name="$ctrl.name"> loading List </list> \
-   <map></map>\
-   <userform>userForm Not Loading</userform> \
-   '
+  `<list name="$ctrl.name"> loading List </list>
+   <map></map>
+   <userform>userForm Not Loading</userform>
+   `
 })
 .service('get', function () {
 });

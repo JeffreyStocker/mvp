@@ -1,0 +1,3 @@
+angular.model('app', () => {
+  
+})

@@ -3,10 +3,10 @@ angular.module('app').component('list', {
     name: '<'
   },
   controller: function ($getData, $post) {
-  console.log('test',$getData)
+  // console.log('test',$getData)
   $post.postData();
 }
   ,
-  template: '<div>list: im here {{$ctrl.name}} </div>',
+  template: '<div></div>',
   // template: "<div>i'm here {{name}} {{$ctrl.name}} </div>",
 })
