@@ -1,6 +1,12 @@
 angular.module('app').component ('userform', {
   binding: {},
-  controller: 'mainController',
+  controller: function ($post, $scope) {
+    $scope.submitDataToServer = function (data) {
+      console.log ('this')
+      console.log ('data', data)
+      $post.postData(data)
+    }
+  },
   templateUrl: 'templates/form.html' 
 })
 
