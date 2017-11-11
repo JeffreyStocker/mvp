@@ -7,7 +7,7 @@
     "start": "node server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon": "nodemon server/app.js",
-    "live-server": "live-server --port=8000"
+    "live-server": "live-server -- --port=8000"
   },
   "author": "Jeffrey Stocker",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "lodash": "^4.17.4",
     "mongoose": "^4.13.1",
     "request": "^2.83.0",
+    "request-promise": "^4.2.2",
     "socket.io": "^2.0.4",
     "webpack": "^3.8.1"
   }
