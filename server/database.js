@@ -35,15 +35,23 @@ mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
   ///// database middleware /////////////
 
   module.exports.middleSaveToDatabase = function (req, res, next) {
-    var user = new Carpool({
-      username: res.body.name, 
-      homeAddress: res.body.homeAddress,
-      workAddress: res.body.workAddress, 
-      range: res.body.range
-    })
-    user.save((err, response) => {
+    userObject = {
+      username: req.body.name, 
+      homeAddress: req.body.homeAddress || "",
+      workAddress: req.body.workAddress || "", 
+      range: req.body.range || 5
+    }
+
+    var user = new Carpool(userObject).save((err, response) => {
       if (err && err.code === 11000) {
         console.log('Duplicate File') //need to update instead
+        Carpool.update({username: req.body.name}, userObject, {}, function (err, raw) {
+          if (err) {
+            console.log('error updating database:', err)
+          } else {
+            next()
+          }
+        })
       } else 
       if (err) {
         console.log('error saving to database:', err)
@@ -51,7 +59,13 @@ mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
         next();
       }
     })
+}
 
-
-
+module.exports.middleFindOneInDatabase = function (req, res, next) {
+  Carpool.findOne({username: req.body.name}, function (err, data){
+    if (err){
+    } else {
+      console.log ('data from database:', data)
+    }
+  })
 }

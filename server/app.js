@@ -17,12 +17,12 @@ var port = userVar.port
 app.use(express.static('client'))
 
 app.use('/',middleware.listener)
-app.post('/', middleware.putTogetherBody, db.middleSaveToDatabase)
+app.post('/', middleware.putTogetherBody, db.middleSaveToDatabase, db.middleFindOneInDatabase)
 app.post('/', (req, res) => {
   
   // res.status(201)
-  console.log ('res.body', res.body)
-  res.status(201).send(res.body)
+  console.log ('req.body', req.body)
+  res.status(201).send(req.body)
   // res.json(req.body)
 })
 
