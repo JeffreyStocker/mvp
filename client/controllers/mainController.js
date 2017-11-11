@@ -1,4 +1,4 @@
-angular.module("app", [])
+var app = angular.module("app", [])
 .controller("mainController", function mainController()  {
   // $scope.name = "Bob" //this works when just using {{name}}
   this.name = "sdafsdafsdf"  //note this work when specify ng-controller="mainController as ctrl" {{ctrl.name}}
@@ -14,4 +14,6 @@ angular.module("app", [])
    <map></map>\
    <userform>userForm Not Loading</userform> \
    '
+})
+.service('get', function () {
 });

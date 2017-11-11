@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var request = require('request')
+var middleware = require('./middleware/middleware.js')
 // var io = require('socket.io')
 
 ///// local modules /////
@@ -12,14 +13,20 @@ var userVar = require("./userVariables.js")
 var port = userVar.port
 
 /////// routing ///////
+
 app.use(express.static('client'))
 
-app.post((req, res) => {env
-  res.end()
+app.use('/',middleware.listener)
+app.post('/', middleware.putTogetherBody)
+app.post('/', (req, res) => {
+  
+  res.status(201)
+  res.end('yes')
 })
 
 app.get((req, res) => {
-  res.end()
+  res.status(200)
+  // res.end('yes')
 })
 
 
@@ -29,3 +36,6 @@ app.listen(port, () => {
 
 ///// playing with enviromental Variables
 // console.log ('env', process.env.test)
+
+
+  
