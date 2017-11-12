@@ -74,3 +74,17 @@ module.exports.middleFindOneInDatabase = function (req, res, next) {
     }
   })
 }
+
+module.exports.middleReturnAll = function (req, res, next) {
+  Carpool.findOne({}, function (err, data) {  
+    if (err) {
+      console.log ('database Error retrieving all info')
+    } else {
+      console.log ('data', data)
+      req.body.data = data
+    }
+
+  })
+
+
+}
