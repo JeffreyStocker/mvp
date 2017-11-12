@@ -18,6 +18,8 @@ var db = require('./database.js')
 //   })
 //   .catch((err) => console.log('error') )
 
+
+
 ////  user set variables ///////
 var userVar = require("./userVariables.js")
 var port = userVar.port

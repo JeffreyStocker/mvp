@@ -59,7 +59,7 @@ var createMarkerHome = function (lat, long, options = {}) {
     animation: google.maps.Animation.DROP,
     title: title, 
     icon: {
-      path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+      path: google.maps.SymbolPath.CIRCLE,
       strokeColor: "blue",
       scale: 4
     }

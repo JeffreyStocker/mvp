@@ -29,8 +29,18 @@
 <script src="services/geocoding.js"></script>
 <script src="services/get.js"></script>
 <script src="services/post.js"></script>
+<!-- <script src="services/post.js"></script> -->
 
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtkcksA-IjZRh_FUmHWnQGpxAaP8U21j4&callback=initGoogle&libraries=places">
+<script async defer>
+  var key = 'AIzaSyDtkcksA-IjZRh_FUmHWnQGpxAaP8U21j4'
+  var createHiddenAPI = document.createElement('script');
+  createHiddenAPI.src = "https://maps.googleapis.com/maps/api/js?key="+key+"&callback=initGoogle&libraries=places";
+  document.getElementsByTagName('head')[0].appendChild(createHiddenAPI);
+
+
 </script>
+
+<!-- <script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtkcksA-IjZRh_FUmHWnQGpxAaP8U21j4&callback=initGoogle&libraries=places">
+</script> -->
 </html>
