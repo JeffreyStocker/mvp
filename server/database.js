@@ -81,6 +81,7 @@ module.exports.middleReturnAll = function (req, res, next) {
       console.log ('database Error retrieving all info')
     } else {
       console.log ('data', data)
+      req.body = req.body || {};
       req.body.data = data
     }
 

@@ -1,6 +1,6 @@
 app.service('$useGet', function () {
   this.getData = function () {  // need to declare as this
-    $.get('/user/data')
+    $.get('/users/data/all')
       .done ((data) => {
 
       })
