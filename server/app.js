@@ -26,16 +26,21 @@ var port = userVar.port
 /////// routing ///////
 app.use(express.static('client'))
 
-app.use('/',middleware.listener)
+app.use('/*',middleware.listener)
 // app.post('/', middleware.putTogetherBody, db.middleSaveToDatabase, db.middleFindOneInDatabase)
-app.post('/', middleware.putTogetherBody, geocoding.middleRetrieveAddressFromGoogle, db.middleSaveToDatabase, db.middleFindOneInDatabase)
-app.post('/', (req, res) => {
+app.post('/*', middleware.putTogetherBody, geocoding.middleRetrieveAddressFromGoogle, db.middleSaveToDatabase, db.middleFindOneInDatabase)
+app.post('/*', (req, res) => {
   
   // res.status(201)
   console.log ('req.body', req.body)
   res.status(201).send(req.body)
   // res.json(req.body)
 })
+
+
+app.get ('/', (req, res, next) => {console.log(req.body)})
+
+// app.get('/user/location')
 
 app.get((req, res) => {
   res.status(200)
