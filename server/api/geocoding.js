@@ -93,6 +93,7 @@ module.exports.middleRetrieveAddressFromGoogle = function (req, res, next) {
       })
       .then (() => {
         if (body.workAddress) {
+          console.log('finding work address')
           module.exports.getAddress(body.workAddress, null, null)
             .then(results => {
               req.body.workAddress_geolocation = results
@@ -102,11 +103,15 @@ module.exports.middleRetrieveAddressFromGoogle = function (req, res, next) {
             .catch(err => {
               console.log ('error')
             })
+            .then (() => {
+              // console.log('req.geolocation ', req.body.workAddress_geolocation)
+              // console.log('next runs')
+              next()
+            })
+        } else { 
+          next()
         } 
       })
-      .then (() => {
-        console.log('next runs')
-        next()
-      })
+ 
   }
 }
