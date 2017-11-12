@@ -1,5 +1,5 @@
 var app = angular.module("app", [])
-.controller("mainController", function mainController()  {
+.controller("mainController", function mainController($scope, $useGet)  {
   // $scope.name = "Bob" //this works when just using {{name}}
   this.name = "sdafsdafsdf"  //note this work when specify ng-controller="mainController as ctrl" {{ctrl.name}}
   this.test2 = {name: '3424324324'}
@@ -8,12 +8,18 @@ var app = angular.module("app", [])
     console.log ('here')
     console.log ('data', $getData)
   }
+  $scope.testGet = function () {
+    console.log ('here')
+    console.log ('data', $useGet.getData())
+  }
 })
 .component('app', {
   binding: {name: name},
+  controller: 'mainController',
   template: 
   `
   <button id="sendclick" ng-click="test()" >Add Markerrer</button>  
+  <button id="testGet" ng-click="testGet()" >TestGet</button>  
 
    <map></map>
    <h2> See Who is Around You! </h2>
