@@ -37,11 +37,12 @@ app.post('/*', (req, res) => {
   // res.json(req.body)
 })
 
+app.get ('/users/data/all', (req, res, next) => {console.log('test'); next()})
 
-// app.get ('/users/data/all',db.middleReturnAll, (req, res, next) => 
-  // res.status(200).send(req.body)
-  // )
-// app.get ('/users/data/all', (req, res, next) => {console.log('test')})
+app.get ('/users/data/all',db.middleReturnAll, (req, res, next) => {
+  // console.log('req.body', req.body)
+  res.status(200).send(req.body)
+  })
 
 // app.get('/user/location')
 

@@ -1,16 +1,25 @@
 var app = angular.module("app", [])
 .controller("mainController", function mainController($scope, $useGet)  {
   // $scope.name = "Bob" //this works when just using {{name}}
-  this.name = "sdafsdafsdf"  //note this work when specify ng-controller="mainController as ctrl" {{ctrl.name}}
-  this.test2 = {name: '3424324324'}
-  this.name ="asdfsafsd"
-  this.test = function () {
-    console.log ('here')
-    console.log ('data', $getData)
-  }
+  // this.name = "sdafsdafsdf"  //note this work when specify ng-controller="mainController as ctrl" {{ctrl.name}}
+  // this.test2 = {name: '3424324324'}
+  // this.name ="asdfsafsd"
+  // this.test = function () {
+  //   console.log ('here')
+  //   console.log ('data', $getData)
+  // }
   $scope.testGet = function () {
-    console.log ('here')
-    console.log ('data', $useGet.getData())
+    // console.log ('here')
+    $useGet.getData()
+      .then(data => {
+        // console.log ('promise data', data)
+      })
+      .catch(error => {
+        console.log('catch error')
+      })
+//     $useGet.getData2(function (error, data) {
+//       console.log ('callback data', data)
+//     }) 
   }
 })
 .component('app', {
