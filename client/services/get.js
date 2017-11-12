@@ -1,9 +1,11 @@
-app.service('$getData', function () {
+app.service('$useGet', function () {
   this.getData = function () {  // need to declare as this
-    $.get('/user/data', function (data, status){
-      if (status === 'success') {
-        console.log('post successful')
-      }
-    })
+    $.get('/user/data')
+      .done ((data) => {
+
+      })
+      .fail((error) => {
+
+      })
   }
 })
