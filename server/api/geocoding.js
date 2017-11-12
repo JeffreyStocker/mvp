@@ -24,6 +24,19 @@ var longToMiles = function (long, lat) {
 // var d = R * c;
 
 
+var exactDistanceInMiles = function (lat1, lon1, lat2, lon2) {
+  var sin = Math.sin;
+  var arccos = Math.acos;
+  var cos = Math.cos;
+
+  return 3958.75 * arccos[sin(lat1/57.2958) *
+  sin(lat2/57.2958) + 
+  cos(lat1/57.2958) * 
+  cos(lat2/57.2958) * 
+  cos(lon2/57.2958 - lon1/57.2958)]
+}
+
+
 module.exports.getAddress = function (address, latlng, place_id) {
   //note: location is a string with lat lng seperated by ,
   var searchString;
