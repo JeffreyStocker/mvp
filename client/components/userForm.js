@@ -2,7 +2,7 @@ angular.module('app').component ('userform', {
   binding: {form: "="},
   controller: function ($post, $scope) {
     $scope.submitDataToServer = function (data) {
-      console.log ('data', data)
+      console.log ('POST sent data', data)
       $post.postData(data)
         .then(data => {
           window.parsePostDataToCreateMarkers(data)

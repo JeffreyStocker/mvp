@@ -12,10 +12,11 @@ var app = angular.module("app", [])
     // console.log ('here')
     $useGet.getData()
       .then(data => {
-        // console.log ('promise data', data)
+        console.log ('promise data', data)
+        window.parseGetDataToCreateFieldOfMarkers(data)
       })
       .catch(error => {
-        console.log('catch error')
+        console.log('catch error', error)
       })
 //     $useGet.getData2(function (error, data) {
 //       console.log ('callback data', data)

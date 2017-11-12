@@ -27,17 +27,17 @@ var port = userVar.port
 app.use(express.static('client'))
 
 app.use('/*',middleware.listener)
+
+
 // app.post('/', middleware.putTogetherBody, db.middleSaveToDatabase, db.middleFindOneInDatabase)
 app.post('/*', middleware.putTogetherBody, geocoding.middleRetrieveAddressFromGoogle, db.middleSaveToDatabase, db.middleFindOneInDatabase)
 app.post('/*', (req, res) => {
-  
-  // res.status(201)
-  console.log ('req.body', req.body)
-  res.status(201).send(req.body.data)
+  console.log ('POST: sending: req.body')
+  res.status(201).send(req.body)
   // res.json(req.body)
 })
 
-app.get ('/users/data/all', (req, res, next) => {console.log('test'); next()})
+// app.get ('/users/data/all', (req, res, next) => {console.log('test'); next()})
 
 app.get ('/users/data/all',db.middleReturnAll, (req, res, next) => {
   // console.log('req.body', req.body)

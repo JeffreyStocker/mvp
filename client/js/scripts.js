@@ -26,6 +26,30 @@ window.parsePostDataToCreateMarkers = function (data){
   }
 }
 
+window.parseGetDataToCreateFieldOfMarkers = function (data) {
+  if (!data) { return }
+  console.log (data.data)
+  if (Array.isArray(data.data)) {
+    data.data.forEach (singleData => {
+      try {
+
+        console.log('element', singleData)
+        var home = singleData.homeAddress_geolocation.results[0].geometry.location || null;
+        if (home) {
+          createMarker(home.lat, home.lng, {title: "Home"})
+        }
+        var work = singleData.workAddress_geolocation.results[0].geometry.location || null;
+        if (work) {
+          createMarker(work.lat, work.lng, {title: "Work"})
+        }
+      } catch (err) {
+        
+      }
+       })
+      
+  }
+}
+
 var createMarkerHome = function (lat, long, options = {}) {
   var title = options.title || '';
   // var label = options.label || '';
