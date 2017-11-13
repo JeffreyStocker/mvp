@@ -1,0 +1,16 @@
+div, input, button {
+  margin: 5px;
+}
+
+#map {
+  margin: 5px;
+}
+
+#infoBox {
+  float: left;
+  border: 10px, black, solid
+}
+
+#autocompleteHome, #autocompleteWork, #username {
+  width: 300px;
+}

@@ -8,35 +8,22 @@ var app = angular.module("app", [])
   //   console.log ('here')
   //   console.log ('data', $getData)
   // }
-  $scope.testGet = function () {
-    // console.log ('here')
-    $useGet.getData()
-      .then(data => {
-        console.log ('promise data', data)
-        window.parseGetDataToCreateFieldOfMarkers(data)
-      })
-      .catch(error => {
-        console.log('catch error', error)
-      })
-//     $useGet.getData2(function (error, data) {
-//       console.log ('callback data', data)
-//     }) 
-  }
+
 })
 .component('app', {
   binding: {name: name},
   controller: 'mainController',
   template: 
   `
-  <button id="sendclick" ng-click="test()" >Add Markerrer</button>  
-  <button id="testGet" ng-click="testGet()" >TestGet</button>  
-
-   <map></map>
-   <h2> See Who is Around You! </h2>
-   <userform>userForm Loading</userform>
-   `
+  <map></map>
+  <h2> See Who is Around You! </h2>
+  <div>
+    <userform >userForm Loading</userform>
+   
+  <div> `
 })
 .service('get', function () {
 });
 
 //  <list name="$ctrl.name"> List Loading </list>
+// <showselecteduser> </showselecteduser>

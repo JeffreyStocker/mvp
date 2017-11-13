@@ -1,10 +1,11 @@
 <div>
   <form action="/" method="post" onsubmit="return false" novalidate>
-    <div>Name:          <input id="username" placeholder="Name" type="text" ng-init="form.name='Bob'" ng-model="form.name" autofocus> <div>
-    <div> Address:      <input id="autocomplete" placeholder="Home Address" onFocus="geolocate()" ng-init="form.homeAddress='1818 26th Ave, San Francisco, CA 94122, USA'" type="text" ng-model="form.homeAddress"> </div>
-    <div> Work Address  <input id="workAddress" placeholder="Work Address" ng-init="form.workAddress='944 Market St, San Francisco, CA 94102, USA'" type="text" ng-model="form.workAddress"> </div>
+    <div>Name:          <input id="username" placeholder="Name" type="text" ng-init="form.name='Bob'" ng-model="form.name"> <div>
+    <div> Address:      <input id="autocompleteHome" placeholder="Home Address"  ng-init="form.homeAddress='1818 26th Ave, San Francisco, CA 94122, USA'" type="text" ng-model="form.homeAddress"> </div>
+    <div> Work Address  <input id="autocompleteWork" placeholder="Work Address"  ng-init="form.workAddress='944 Market St, San Francisco, CA 94102, USA'" type="text" ng-model="form.workAddress"> </div>
     <!-- <div> Carpool Range <input id="range" placeholder="in mile" type="text" ng-init="form.range='5'" ng-model="form.range"> </div> -->
     <input type="button" ng-click="submitDataToServer(form)" value="Submit">
+    <button id="testGet" ng-click="testGet()" >Get Local Carpoolers</button>  
     <!-- <input type="submit" value="Submit"> -->
   </form>
 </div>
@@ -13,4 +14,5 @@
 <!-- <div id="locationField">
     <input id="autocomplete" placeholder="Enter your address"
            onFocus="geolocate()" type="text"></input>
-    </div> -->
+    </div> 
+  -->
