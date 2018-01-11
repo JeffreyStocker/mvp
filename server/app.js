@@ -1,3 +1,7 @@
+if (!process.env.port) {
+  const env = require('dotenv').config();
+}
+
 var express = require('express');
 var app = express();
 var request = require('request')
@@ -7,6 +11,10 @@ var geocoding = require('./api/geocoding.js');
 
 ///// local modules /////
 var db = require('./database.js')
+
+
+var port = process.env.port;
+console.log('port', port)
 
 ////////// quick testing/////////
 // var address = '944 Market St, San Francisco, CA 94102, USA'
@@ -19,23 +27,17 @@ var db = require('./database.js')
 //   .catch((err) => console.log('error') )
 
 
-
-////  user set variables ///////
-var userVar = require("./userVariables.js")
-var port = userVar.port
-
-
 /////// routing ///////
-app.use(express.static('client'))
+app.use(express.static('client'));
 
-app.use('/*',middleware.listener)
+app.use('/*',middleware.listener);
 
 
 // app.post('/', middleware.putTogetherBody, db.middleSaveToDatabase, db.middleFindOneInDatabase)
-app.post('/*', middleware.putTogetherBody, geocoding.middleRetrieveAddressFromGoogle, db.middleSaveToDatabase, db.middleFindOneInDatabase)
-app.post('/*', (req, res) => {
-  console.log ('POST: sending: req.body')
-  res.status(201).send(req.body)
+app.post('/', middleware.putTogetherBody, geocoding.middleRetrieveAddressFromGoogle, db.middleSaveToDatabase, db.middleFindOneInDatabase)
+app.post('/', (req, res) => {
+  console.log ('POST: sending: req.body');
+  res.status(201).send(req.body);
   // res.json(req.body)
 })
 
@@ -43,23 +45,23 @@ app.post('/*', (req, res) => {
 
 app.get ('/users/data/all',db.middleReturnAll, (req, res, next) => {
   // console.log('req.body', req.body)
-  res.status(200).send(req.body)
-  })
+  res.status(200).send(req.body);
+})
 
 // app.get('/user/location')
 
 app.get((req, res) => {
-  res.status(200)
+  res.status(200);
   // res.end('yes')
 })
 
 
 app.listen(port, () => {
-  console.log('App is listening on port: ', port)
+  console.log('App is listening on port: ', port);
 })
 
 ///// playing with enviromental Variables
 // console.log ('env', process.env.test)
 
 
-  
+

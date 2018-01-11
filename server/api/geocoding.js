@@ -1,12 +1,12 @@
-var request = require('request-promise')
-var api = require('../../api.js')
+var request = require('request-promise');
+var api = require('../../api.js');
 
 var latToMiles = function (lat) {
-  return lat * ((69.407 + 68.703) / 2)
+  return lat * ((69.407 + 68.703) / 2);
 }
 
 var longToMiles = function (long, lat) {
-  return lat * ((69.407 + 68.703) / 2)
+  return lat * ((69.407 + 68.703) / 2);
 }
 
 // // https://www.movable-type.co.uk/scripts/latlong.html
@@ -32,9 +32,9 @@ var exactDistanceInMiles = function (lat1, lon1, lat2, lon2) {
   var cos = Math.cos;
 
   return 3958.75 * arccos[sin(lat1/57.2958) *
-  sin(lat2/57.2958) + 
-  cos(lat1/57.2958) * 
-  cos(lat2/57.2958) * 
+  sin(lat2/57.2958) +
+  cos(lat1/57.2958) *
+  cos(lat2/57.2958) *
   cos(lon2/57.2958 - lon1/57.2958)]
 }
 console.log(
@@ -59,7 +59,7 @@ module.exports.getAddress = function (address, latlng, place_id) {
     // console.log(searchString)
     const options = {
       method: 'GET',
-      uri: `https://maps.googleapis.com/maps/api/geocode/json?${searchString}&key=${api.googleKey}`
+      uri: `https://maps.googleapis.com/maps/api/geocode/json?${searchString}&key=${process.env.googleKey}`
     }
     request(options)
       .then(data => {
@@ -108,10 +108,10 @@ module.exports.middleRetrieveAddressFromGoogle = function (req, res, next) {
               // console.log('next runs')
               next()
             })
-        } else { 
+        } else {
           next()
-        } 
+        }
       })
- 
+
   }
 }

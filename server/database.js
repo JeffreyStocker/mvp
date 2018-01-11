@@ -1,17 +1,20 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 var mongodb = require('mongodb')
-var userVar = require("./userVariables.js")
-try {
-  var dbURI = require("../api.js")
-  var databaseLocation = dbURI.dbURI
-} catch (err) {
-  var databaseLocation = userVar.databaseLocation
-}
+
+// var userVar = require("./userVariables.js")
+
+// try {
+//   var dbURI = require("../api.js")
+//   var databaseLocation = dbURI.dbURI
+// } catch (err) {
+//   var databaseLocation = userVar.databaseLocation
+// }
 
 // mongoose.connect(databaseLocation)
-// console.log('database: ', databaseLocation)
-mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
+console.log('database: ', process.env.databaseLocation)
+
+mongoose.connect(process.env.databaseLocation, {useMongoClient: true, autoIndex: true})
   .then ((status) => {
     console.log ('db successful connected')
   })
@@ -20,17 +23,17 @@ mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
     // console.log ('db connect error')
   });
 
-  
+
   /// work in progress basic ideas
   var carpoolSchema = new Schema ({
     username: {type: String, unique: true},
-    homeAddress: String, 
-    homeAddress_geolocation: Schema.Types.Mixed, 
-    workAddress: String, 
+    homeAddress: String,
+    homeAddress_geolocation: Schema.Types.Mixed,
+    workAddress: String,
     workAddress_geolocation: Schema.Types.Mixed,
-    range: Number, 
+    range: Number,
   })
-  
+
   var Carpool = mongoose.model('Carpool', carpoolSchema)
 
 
@@ -38,9 +41,9 @@ mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
 
   module.exports.middleSaveToDatabase = function (req, res, next) {
     userObject = {
-      username: req.body.name, 
+      username: req.body.name,
       homeAddress: req.body.homeAddress || "",
-      workAddress: req.body.workAddress || "", 
+      workAddress: req.body.workAddress || "",
       homeAddress_geolocation: req.body.homeAddress_geolocation || '',
       workAddress_geolocation: req.body.workAddress_geolocation || '',
       range: req.body.range || 5
@@ -57,7 +60,7 @@ mongoose.connect(databaseLocation, {useMongoClient: true, autoIndex: true})
             next()
           }
         })
-      } else 
+      } else
       if (err) {
         console.log('error saving to database:', err)
       } else {
@@ -76,7 +79,7 @@ module.exports.middleFindOneInDatabase = function (req, res, next) {
 }
 
 module.exports.middleReturnAll = function (req, res, next) {
-  Carpool.find({}, function (err, data) {  
+  Carpool.find({}, function (err, data) {
     if (err) {
       console.log ('database Error retrieving all info')
     } else {
