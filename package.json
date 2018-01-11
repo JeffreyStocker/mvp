@@ -4,7 +4,7 @@
   "description": "Carpool finding helper",
   "main": "server/app.js",
   "scripts": {
-    "start": "node server/app.js",
+    "start": "node ./server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon": "nodemon server/app.js",
     "live-server": "live-server -- --port=8000"
