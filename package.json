@@ -21,9 +21,10 @@
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
     "socket.io": "^2.0.4",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "dotenv": "^4.0.0"
   },
   "devDependencies": {
-    "dotenv": "^4.0.0"
+
   }
 }
