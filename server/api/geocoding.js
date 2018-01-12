@@ -1,5 +1,5 @@
 var request = require('request-promise');
-var api = require('../../api.js');
+// var api = require('../../api.js');
 
 var latToMiles = function (lat) {
   return lat * ((69.407 + 68.703) / 2);
