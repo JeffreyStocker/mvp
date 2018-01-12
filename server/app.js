@@ -1,3 +1,4 @@
+console.log('port', process.env.port);
 if (!process.env.port) {
   const env = require('dotenv').config();
 }
@@ -30,7 +31,7 @@ console.log('port', port)
 /////// routing ///////
 app.use(express.static('client'));
 
-app.use('/*',middleware.listener);
+app.use('/',middleware.listener);
 
 
 // app.post('/', middleware.putTogetherBody, db.middleSaveToDatabase, db.middleFindOneInDatabase)
