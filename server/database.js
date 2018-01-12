@@ -12,7 +12,6 @@ var mongodb = require('mongodb')
 // }
 
 // mongoose.connect(databaseLocation)
-console.log('database: ', process.env.databaseLocation)
 
 mongoose.connect(process.env.databaseLocation, {useMongoClient: true, autoIndex: true})
   .then ((status) => {

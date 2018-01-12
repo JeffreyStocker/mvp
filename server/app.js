@@ -1,6 +1,6 @@
 console.log('port', process.env.port);
 if (!process.env.port) {
-  const env = require('dotenv').config();
+  // const env = require('dotenv').config();
 }
 
 var express = require('express');
