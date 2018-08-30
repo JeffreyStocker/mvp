@@ -1,7 +1,5 @@
-console.log('port', process.env.port);
-if (!process.env.port) {
-  // const env = require('dotenv').config();
-}
+const env = require('dotenv').config();
+const port = process.env.PORT || 4040;
 
 var express = require('express');
 var app = express();
@@ -13,9 +11,6 @@ var geocoding = require('./api/geocoding.js');
 ///// local modules /////
 var db = require('./database.js')
 
-
-var port = process.env.port;
-console.log('port', port)
 
 ////////// quick testing/////////
 // var address = '944 Market St, San Francisco, CA 94102, USA'
