@@ -1,19 +1,15 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
 var mongodb = require('mongodb')
+if (process.env.dbURI) {
+  var dbLocation = process.env.dbURI
+} else {
+  throw new Error ('Database location must be included in .env file or passed in as a env variable')
+}
 
-// var userVar = require("./userVariables.js")
+mongoose.Promise = require ('bluebird');
 
-// try {
-//   var dbURI = require("../api.js")
-//   var databaseLocation = dbURI.dbURI
-// } catch (err) {
-//   var databaseLocation = userVar.databaseLocation
-// }
-
-// mongoose.connect(databaseLocation)
-
-mongoose.connect(process.env.databaseLocation, {useMongoClient: true, autoIndex: true})
+mongoose.connect(dbLocation, {useMongoClient: true, autoIndex: true})
   .then ((status) => {
     console.log ('db successful connected')
   })
