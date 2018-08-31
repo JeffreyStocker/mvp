@@ -59,12 +59,13 @@ module.exports.getAddress = function (address, latlng, place_id) {
     // console.log(searchString)
     const options = {
       method: 'GET',
-      uri: `https://maps.googleapis.com/maps/api/geocode/json?${searchString}&key=${process.env.googleKey}`
+      uri: `https://maps.googleapis.com/maps/api/geocode/json?${searchString}&key=${process.env.googleGeoCodingKey}`
     }
     request(options)
       .then(data => {
         // console.log('data', data)
-        resolve (JSON.parse(data))
+        var parsedData = JSON.parse(data);
+        parsedData.error_message ? revoke (parsedData) : resolve (parsedData);
       })
       .catch((error) => {
         revoke(error)
@@ -88,14 +89,14 @@ module.exports.middleRetrieveAddressFromGoogle = function (req, res, next) {
         req.body.homeAddress_geolocation = results
         console.log(results)
       })
-      .catch(err => {
-        console.log ('error')
-      })
       .then (() => {
         if (body.workAddress) {
           console.log('finding work address')
           module.exports.getAddress(body.workAddress, null, null)
             .then(results => {
+              if (results.error_message) {
+                throw new Error (results.error_message);
+              }
               req.body.workAddress_geolocation = results
               console.log(results)
               next()
@@ -112,6 +113,10 @@ module.exports.middleRetrieveAddressFromGoogle = function (req, res, next) {
           next()
         }
       })
-
+      .catch(err => {
+        console.log ('error');
+        res.status(404).send(err);
+        return;
+      });
   }
 }
