@@ -11,6 +11,9 @@ var geocoding = require('./api/geocoding.js');
 ///// local modules /////
 var db = require('./database.js')
 
+if (!process.env.BrowserGoogleMapsAPIKey) {
+  throw new Error ('A google Javascript api key must be supplied in .env file');
+}
 
 ////////// quick testing/////////
 // var address = '944 Market St, San Francisco, CA 94102, USA'
@@ -49,6 +52,10 @@ app.get ('/users/data/all',db.middleReturnAll, (req, res, next) => {
 app.get((req, res) => {
   res.status(200);
   // res.end('yes')
+})
+
+app.get ('/key', (req, res) => {
+  res.send(process.env.BrowserGoogleMapsAPIKey);
 })
 
 
