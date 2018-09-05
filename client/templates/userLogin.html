@@ -1,0 +1,28 @@
+<div>
+  {{username}}
+  <div ng-if="loggedIn">
+    <span > Hi {{user.name}}!</span>
+          <button>Logout</button>
+    <span ng-if="loggedIn">Logout </span>
+  </div>
+  <div ng-else>
+    <span> LogIn </span>
+    <form  class="floatRight" action="/login" method="post" name="login">
+      <div>
+          <label >Username:</label>
+          <input ng-model='username' type="text" name="username"/>
+          <input ng-model='email' type="email" name="email"/>
+          <span ng-show="login.myAddress.$error.email">Not a valid e-mail address</span>
+      </div>
+      <div>
+          <label >Password:</label>
+          <input ng-model='password' type="password" name="password"/>
+      </div>
+      <div>
+          <input type="submit" value="Log In"/>
+      </div>
+    </form>
+
+  </div>
+</div>
+

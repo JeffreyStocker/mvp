@@ -8,18 +8,19 @@ var app = angular.module("app", [])
   //   console.log ('here')
   //   console.log ('data', $getData)
   // }
+  this.user = null;
 
 })
 .component('app', {
   binding: {name: name},
   controller: 'mainController',
-  template: 
+  template:
   `
+  <title-bar></title-bar>
   <map></map>
   <h2> See Who is Around You! </h2>
   <div>
     <userform >userForm Loading</userform>
-   
   <div> `
 })
 .service('get', function () {
