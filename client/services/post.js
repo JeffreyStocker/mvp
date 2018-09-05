@@ -16,13 +16,13 @@ app.service('$post', function () {
 
     $.post('/', JSON.stringify(dataToSend))
       .done((data) => {
-        console.log('POST successful, Data: ', data)
-        resolve (data)
+        console.log('POST successful, Data: ', data);
+        resolve (data);
       })
       .fail((error) => {
-        console.log ('POST Error')
-        reject (error)
-      }) 
+        console.log ('POST Error', error.responseText);
+        reject (error);
+      })
     })
   }
 })
