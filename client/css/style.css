@@ -1,9 +1,16 @@
-div, input, button {
+body {
+  padding: 10px
+}
+
+button {
   margin: 5px;
 }
 
 #map {
-  margin: 5px;
+  margin: 0px;
+  padding: 10px;
+  width:96%;
+  height:400px;
 }
 
 #infoBox {
@@ -13,4 +20,24 @@ div, input, button {
 
 #autocompleteHome, #autocompleteWork, #username {
   width: 300px;
+}
+
+.titleBar {
+  padding: 20px 10px;
+  /* height: 50px; */
+  /* display: flex; */
+  overflow: hidden;
+  width: 99%;
+}
+
+.floatRight {
+  float: right;
+}
+
+.floatLeft {
+  float: left;
+}
+
+.login {
+  right: 0px;
 }

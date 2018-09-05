@@ -14,6 +14,6 @@ angular.module("app").component('map', {
   controller: 'mainController',
   template:
   `
-  <div id="map" style="width:96%;height:400px;"></div>
+  <div id="map" ></div>
   `
 })
