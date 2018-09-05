@@ -6,13 +6,33 @@ var locations = {
 var markers = [];
 var map;
 
+var userLocation = function (cb) {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      cb({lat: position.coords.latitude, lng: position.coords.longitude});
+    }, (err => {
+      cb(locations['San Francisco']);
+    }))
+  } else {
+    cb(locations['San Francisco']);
+  }
+}
+
 var initGoogle = function() {  //places a marker in the map
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 11,
-    center: locations["San Francisco"]
-  });
-  autoComInit();
-  workAutoComplete();
+  userLocation (location => {
+    map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 11,
+      center: location
+    });
+    autoComInit();
+    workAutoComplete();
+  })
+  // map = new google.maps.Map(document.getElementById('map'), {
+  //   zoom: 11,
+  //   center: locations['San Francisco']
+  // });
+  // autoComInit();
+  // workAutoComplete();
 }
 
 window.parsePostDataToCreateMarkers = function (data){
@@ -42,9 +62,9 @@ window.parseGetDataToCreateFieldOfMarkers = function (data) {
         if (work) {
           createMarker(work.lat, work.lng, {title: `${singleData.username} \nHome Address: ${singleData.workAddress_geolocation.results[0].formatted_address}`})
         }
-      } catch (err) {  
+      } catch (err) {
       }
-    })   
+    })
   }
 }
 
@@ -52,10 +72,10 @@ var createMarkerHome = function (lat, long, options = {}) {
   var title = options.title || '';
   var label = options.label || '';
   markers.push(new google.maps.Marker({
-    position: {lat: lat, lng: long}, 
-    map: map, 
+    position: {lat: lat, lng: long},
+    map: map,
     animation: google.maps.Animation.DROP,
-    title: title, 
+    title: title,
     icon: {
       path: google.maps.SymbolPath.CIRCLE,
       strokeColor: "blue",
@@ -72,10 +92,10 @@ var createMarker = function (lat, long, options = {}) {
   var title = options.title || '';
   var label = options.label || '';
   markers.push(new google.maps.Marker({
-    position: {lat: lat, lng: long}, 
-    map: map, 
+    position: {lat: lat, lng: long},
+    map: map,
     animation: google.maps.Animation.DROP,
-    title: title, 
+    title: title,
     label: label
   }))
   markers[markers.length - 1].addListener('click', () => {
@@ -97,19 +117,19 @@ var createRandomMarker = function (lat, long) {
   )
 }
 
-  
- 
+
+
 
 
 $('document').ready(function () {
-  
+
   $('#click').on('click', function (){
     createRandomMarker();
   })
 
   $('#username').on('keypress', (event) => {
     if (event.which === 13) {
-      
+
     }
   })
 })
@@ -124,7 +144,7 @@ var autoComInit = function () {
   autocomplete = new google.maps.places.Autocomplete(
     /** @type {!HTMLInputElement} */(document.getElementById('autocompleteHome')),
     {types: ['geocode']});
-    
+
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
   // autocomplete.addListener('place_changed', fillInAddress);
@@ -134,7 +154,7 @@ var workAutoComplete = function () {
   autocomplete2 = new google.maps.places.Autocomplete(
     /** @type {!HTMLInputElement} */(document.getElementById('autocompleteWork')),
     {types: ['geocode']});
-    
+
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
   // autocomplete.addListener('place_changed', fillInAddress);
