@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "nodemon": "nodemon --inspect --delay 1000 --ignore ./public --ignore node_modules ./server/app.js",
+    "nodemon": "nodemon  --ignore client/ --ignore node_modules/ --delay 1 --inspect --trace-warnings ./server/app.js NODE_ENV=development ",
     "live-server": "live-server -- --port=8000"
   },
   "author": "Jeffrey Stocker",
