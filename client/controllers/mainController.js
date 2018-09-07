@@ -23,8 +23,6 @@ var app = angular.module("app", [])
     <userform >userForm Loading</userform>
   <div> `
 })
-.service('get', function () {
-});
 
 //  <list name="$ctrl.name"> List Loading </list>
 // <showselecteduser> </showselecteduser>
