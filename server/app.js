@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
 var geocoding = require('./api/geocoding.js');
-var userLogin = require ('./routes');
+var userLogin = require ('./routesLogin.js');
 
 const passport = require ('passport');
 const LocalStrategy = require('passport-local').Strategy;
