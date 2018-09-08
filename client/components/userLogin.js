@@ -1,13 +1,13 @@
 angular.module('app').component('login', {
   binding: {
-    user: "<"
+    user: '<'
   },
   controller: 'loginController',
   templateUrl: 'templates/userLogin.html'
 }).controller('loginController', function loginController($scope, $http) {
   var ctrl = this;
   console.log('this works');
-  ctrl.loginInfo = {password: '', username: ''}
+  ctrl.loginInfo = {password: '', username: ''};
 
   ctrl.login = function (user) {
     $http.post('login', user)
@@ -19,7 +19,7 @@ angular.module('app').component('login', {
       })
       .then(() => {
         ctrl.loginInfo.password = '';
-      })
+      });
   };
 
   ctrl.logout = function () {
@@ -32,8 +32,8 @@ angular.module('app').component('login', {
       })
       .then(() => {
         ctrl.loginInfo.password = '';
-      })
-  }
+      });
+  };
 
   ctrl.create = function (loginInfo) {
     $http.post('register', loginInfo)
@@ -45,6 +45,6 @@ angular.module('app').component('login', {
       })
       .then(() => {
         ctrl.loginInfo.password = '';
-      })
-  }
+      });
+  };
 });
