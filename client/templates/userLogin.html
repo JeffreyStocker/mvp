@@ -10,14 +10,14 @@
       <div>
           <label >Username:</label>
           <input ng-model='$ctrl.loginInfo.username' type="text" name="username"/>
-          <span ng-if="$ctrl.error.username"> Invalid Username: {{$ctrl.error.username}} </span>
+          <div ng-if="$ctrl.error.username"> Invalid Username: {{$ctrl.error.username}} </div>
           <!-- <input ng-model='email' type="email" name="email"/>
           <span ng-show="login.myAddress.$error.email">Not a valid e-mail address</span> -->
       </div>
       <div>
           <label >Password:</label>
           <input ng-model='$ctrl.loginInfo.password' type="password" name="password"/>
-          <span ng-if="$ctrl.error.password"> Invalid Password: {{$ctrl.error.password}} </span>
+          <div ng-if="$ctrl.error.password"> Invalid Password: {{$ctrl.error.password}} </div>
       </div>
       <div>
           <button ng-click="$ctrl.login($ctrl.loginInfo)"  value="Log In"> Login </button>
