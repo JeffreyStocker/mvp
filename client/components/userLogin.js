@@ -59,6 +59,7 @@ angular.module('app').component('login', {
       })
       .catch (err => {
         console.log('err:', err);
+        ctrl.error.username = err.data;
         ctrl.loginInfo.password = '';
       });
   };
