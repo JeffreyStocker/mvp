@@ -1,26 +1,26 @@
 <div>
-  {{$ctrl.loginInfo.username}}
-  <div ng-if="loggedIn">
+  <div ng-if="$ctrl.user">
     <span > Hi {{user.name}}!</span>
-          <button>Logout</button>
-    <span ng-if="loggedIn">Logout </span>
+    <button ng-click="$ctrl.logout()" value="loginInfo"> Logout </button>
   </div>
-  <div ng-else>
+  <div ng-if="!$ctrl.user">
     <!-- <span> LogIn </span> -->
     <form class="floatRight" name="login">
+      <div ng-if="$ctrl.error.general"> {{$ctrl.error.general}} </div>
       <div>
           <label >Username:</label>
           <input ng-model='$ctrl.loginInfo.username' type="text" name="username"/>
+          <span ng-if="$ctrl.error.username"> Invalid Username: {{$ctrl.error.username}} </span>
           <!-- <input ng-model='email' type="email" name="email"/>
           <span ng-show="login.myAddress.$error.email">Not a valid e-mail address</span> -->
       </div>
       <div>
           <label >Password:</label>
           <input ng-model='$ctrl.loginInfo.password' type="password" name="password"/>
+          <span ng-if="$ctrl.error.password"> Invalid Password: {{$ctrl.error.password}} </span>
       </div>
       <div>
           <button ng-click="$ctrl.login($ctrl.loginInfo)"  value="Log In"> Login </button>
-          <button ng-click="$ctrl.logout()" value="loginInfo"> Logout </button>
           <button ng-click="$ctrl.create($ctrl.loginInfo)" value="Create">Create </button>
       </div>
     </form>

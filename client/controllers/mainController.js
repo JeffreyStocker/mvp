@@ -1,5 +1,5 @@
-var app = angular.module("app", [])
-.controller("mainController", function mainController($scope, $useGet)  {
+var app = angular.module('app', [])
+  .controller('mainController', function mainController($scope, $useGet) {
   // $scope.name = "Bob" //this works when just using {{name}}
   // this.name = "sdafsdafsdf"  //note this work when specify ng-controller="mainController as ctrl" {{ctrl.name}}
   // this.test2 = {name: '3424324324'}
@@ -8,21 +8,22 @@ var app = angular.module("app", [])
   //   console.log ('here')
   //   console.log ('data', $getData)
   // }
-  this.user = null;
+    var ctrl = this;
+    ctrl.user = null;
 
-})
-.component('app', {
-  binding: {name: name},
-  controller: 'mainController',
-  template:
+  })
+  .component('app', {
+    binding: {name: name},
+    controller: 'mainController',
+    template:
   `
-  <title-bar></title-bar>
+  <title-bar user="$ctrl.user"></title-bar>
   <map></map>
   <h2> See Who is Around You! </h2>
   <div>
     <userform >userForm Loading</userform>
   <div> `
-})
+  });
 
 //  <list name="$ctrl.name"> List Loading </list>
 // <showselecteduser> </showselecteduser>
