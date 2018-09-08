@@ -15,6 +15,6 @@ module.exports.putTogetherBody = (req, res, next) => {
 }
 
 module.exports.listener = function (req, res, next){
-    console.log ('Request: Non Static Files: Type:', req.method)
+    console.log ('Request: Non Static Files: Type:', req.method, req.path);
     next();
   }
