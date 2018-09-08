@@ -1,5 +1,5 @@
 app.service('$post', function () {
-  this.postData = function (dataToSend = {}) {  // need to declare as this
+  this.postData = function (dataToSend = {}) { // need to declare as this
     // console.log((dataToSend))
     return new Promise ((resolve, reject) => {
       // $.post('/', JSON.stringify(dataToSend), function (data, status){
@@ -14,15 +14,15 @@ app.service('$post', function () {
       //   }
       // })
 
-    $.post('/', JSON.stringify(dataToSend))
-      .done((data) => {
-        console.log('POST successful, Data: ', data);
-        resolve (data);
-      })
-      .fail((error) => {
-        console.log ('POST Error', error.responseText);
-        reject (error);
-      })
-    })
-  }
-})
+      $.post('/', JSON.stringify(dataToSend))
+        .done((data) => {
+          console.log('POST successful, Data: ', data);
+          resolve (data);
+        })
+        .fail((error) => {
+          console.log ('POST Error', error.responseText);
+          reject (error);
+        });
+    });
+  };
+});

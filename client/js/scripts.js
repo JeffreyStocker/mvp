@@ -1,8 +1,8 @@
 
 var locations = {
-  "San Francisco": {lat: 37.7749 , lng: -122.4194 },
-  "uluru" : {lat: 37.73242 , lng: -122.43425 }
-}
+  'San Francisco': {lat: 37.7749, lng: -122.4194 },
+  'uluru': {lat: 37.73242, lng: -122.43425 }
+};
 var markers = [];
 var map;
 
@@ -11,14 +11,14 @@ var userLocation = function (cb) {
     navigator.geolocation.getCurrentPosition(function(position) {
       cb({lat: position.coords.latitude, lng: position.coords.longitude});
     }, (err => {
-      cb(locations['San Francisco']);
-    }))
+        cb(locations['San Francisco']);
+      }));
   } else {
     cb(locations['San Francisco']);
   }
-}
+};
 
-var initGoogle = function() {  //places a marker in the map
+var initGoogle = function() { //places a marker in the map
   userLocation (location => {
     map = new google.maps.Map(document.getElementById('map'), {
       zoom: 11,
@@ -26,47 +26,47 @@ var initGoogle = function() {  //places a marker in the map
     });
     autoComInit();
     workAutoComplete();
-  })
+  });
   // map = new google.maps.Map(document.getElementById('map'), {
   //   zoom: 11,
   //   center: locations['San Francisco']
   // });
   // autoComInit();
   // workAutoComplete();
-}
+};
 
-window.parsePostDataToCreateMarkers = function (data){
-  if (!data) { return }
+window.parsePostDataToCreateMarkers = function (data) {
+  if (!data) { return; }
   var home = data.homeAddress_geolocation.results[0].geometry.location || null;
   if (home) {
-    createMarkerHome(home.lat, home.lng, {title: "Home"})
+    createMarkerHome(home.lat, home.lng, {title: 'Home'});
   }
   var work = data.workAddress_geolocation.results[0].geometry.location || null;
   if (work) {
-    createMarkerHome(work.lat, work.lng, {title: "Work"})
+    createMarkerHome(work.lat, work.lng, {title: 'Work'});
   }
-}
+};
 
 window.parseGetDataToCreateFieldOfMarkers = function (data) {
-  if (!data) { return }
-  console.log (data.data)
+  if (!data) { return; }
+  console.log (data.data);
   if (Array.isArray(data.data)) {
     data.data.forEach (singleData => {
       try {
-        console.log('element', singleData)
+        console.log('element', singleData);
         var home = singleData.homeAddress_geolocation.results[0].geometry.location || null;
         if (home) {
-          createMarker(home.lat, home.lng, {title: `${singleData.username} \nHome Address: ${singleData.homeAddress_geolocation.results[0].formatted_address}`})
+          createMarker(home.lat, home.lng, {title: `${singleData.username} \nHome Address: ${singleData.homeAddress_geolocation.results[0].formatted_address}`});
         }
         var work = singleData.workAddress_geolocation.results[0].geometry.location || null;
         if (work) {
-          createMarker(work.lat, work.lng, {title: `${singleData.username} \nHome Address: ${singleData.workAddress_geolocation.results[0].formatted_address}`})
+          createMarker(work.lat, work.lng, {title: `${singleData.username} \nHome Address: ${singleData.workAddress_geolocation.results[0].formatted_address}`});
         }
       } catch (err) {
       }
-    })
+    });
   }
-}
+};
 
 var createMarkerHome = function (lat, long, options = {}) {
   var title = options.title || '';
@@ -78,15 +78,15 @@ var createMarkerHome = function (lat, long, options = {}) {
     title: title,
     icon: {
       path: google.maps.SymbolPath.CIRCLE,
-      strokeColor: "blue",
+      strokeColor: 'blue',
       scale: 4
     }
-}))
+  }));
 
   markers[markers.length - 1].addListener('click', () => {
-    console.log ('click')
-  })
-}
+    console.log ('click');
+  });
+};
 
 var createMarker = function (lat, long, options = {}) {
   var title = options.title || '';
@@ -97,25 +97,25 @@ var createMarker = function (lat, long, options = {}) {
     animation: google.maps.Animation.DROP,
     title: title,
     label: label
-  }))
+  }));
   markers[markers.length - 1].addListener('click', () => {
-    console.log ('click')
-  })
-}
+    console.log ('click');
+  });
+};
 
 
 
 var createRandomMarker = function (lat, long) {
   var lat = (37.74 + Math.random() / 10);
-  var long = (-122.43 + Math.random()/10);
+  var long = (-122.43 + Math.random() / 10);
   markers.push(new google.maps.Marker({
-    position: {lat: lat , lng: long },
+    position: {lat: lat, lng: long },
     // position: {lat: 37.7449 , lng: -122.43435 },
-    map:map,
+    map: map,
     animation: google.maps.Animation.DROP
   })
-  )
-}
+  );
+};
 
 
 
@@ -123,23 +123,22 @@ var createRandomMarker = function (lat, long) {
 
 $('document').ready(function () {
 
-  $('#click').on('click', function (){
+  $('#click').on('click', function () {
     createRandomMarker();
-  })
+  });
 
   $('#username').on('keypress', (event) => {
     if (event.which === 13) {
 
     }
-  })
-})
+  });
+});
 
 
 
 
 /////// playing with google autocomplete////////////////////////////
-var autocomplete;
-var autocomplete2;
+var autocomplete, autocomplete2;
 var autoComInit = function () {
   autocomplete = new google.maps.places.Autocomplete(
     /** @type {!HTMLInputElement} */(document.getElementById('autocompleteHome')),
@@ -148,7 +147,7 @@ var autoComInit = function () {
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
   // autocomplete.addListener('place_changed', fillInAddress);
-}
+};
 
 var workAutoComplete = function () {
   autocomplete2 = new google.maps.places.Autocomplete(
@@ -158,7 +157,7 @@ var workAutoComplete = function () {
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
   // autocomplete.addListener('place_changed', fillInAddress);
-}
+};
 
 // var placeSearch, autocomplete;
 // var componentForm = {

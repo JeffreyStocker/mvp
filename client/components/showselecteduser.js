@@ -1,14 +1,14 @@
-angular.module("app").component('showselecteduser', {
-  controller: "mainController",
+angular.module('app').component('showselecteduser', {
+  controller: 'mainController',
   bindings: {
 
   },
   template:
   `
-  <div> 
+  <div>
     <h3>Selected Carpool Information </h3>
     <div> Name: </div>
     <div> Address: </div>
   </div>
   `
-})
+});

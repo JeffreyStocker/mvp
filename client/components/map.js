@@ -1,4 +1,4 @@
-angular.module("app").component('map', {
+angular.module('app').component('map', {
   binding: {},
   // controller: 'mainController',
   controller: 'mapCtrl',
@@ -6,4 +6,4 @@ angular.module("app").component('map', {
   `
   <div id="map" ></div>
   `
-})
+});
