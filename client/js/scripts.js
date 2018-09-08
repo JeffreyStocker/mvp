@@ -4,7 +4,7 @@ var locations = {
   'uluru': {lat: 37.73242, lng: -122.43425 }
 };
 var markers = [];
-var map;
+var map, autocomplete, autocomplete2;
 
 var userLocation = function (cb) {
   if (navigator.geolocation) {
@@ -138,7 +138,7 @@ $('document').ready(function () {
 
 
 /////// playing with google autocomplete////////////////////////////
-var autocomplete, autocomplete2;
+
 var autoComInit = function () {
   autocomplete = new google.maps.places.Autocomplete(
     /** @type {!HTMLInputElement} */(document.getElementById('autocompleteHome')),
