@@ -10,13 +10,14 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
 var geocoding = require('./api/geocoding.js');
+var userLogin = require ('./routes');
 
 const passport = require ('passport'),
   LocalStrategy = require('passport-local').Strategy;
 const UserNamePassword = require ('./database/userNamePassword');
 
 ///// local modules /////
-var db = require('./database.js')
+var db = require('./database/database.js')
 
 if (!process.env.BrowserGoogleMapsAPIKey) {
   throw new Error ('A google Javascript api key must be supplied in .env file');
@@ -34,7 +35,6 @@ if (!process.env.BrowserGoogleMapsAPIKey) {
 
 
 /////// routing ///////
-app.use(express.static('client'));
 
 app.use('/',middleware.listener);
 
@@ -106,18 +106,16 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('client'));
 
 
-// app.use('/', routes);
+
+app.use('/', userLogin);
 
 // passport config
 passport.use(new LocalStrategy(UserNamePassword.authenticate()));
 passport.serializeUser(UserNamePassword.serializeUser());
 passport.deserializeUser(UserNamePassword.deserializeUser());
-
-
-
 
 
 
