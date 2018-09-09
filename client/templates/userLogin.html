@@ -1,6 +1,6 @@
 <div>
   <div ng-if="$ctrl.user">
-    <span > Hi {{user.name}}!</span>
+    <span> Hi {{$ctrl.user.username}}!</span>
     <button ng-click="$ctrl.logout()" value="loginInfo"> Logout </button>
   </div>
   <div ng-if="!$ctrl.user">
