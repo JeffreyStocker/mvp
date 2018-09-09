@@ -64,13 +64,13 @@ app.use(express.static('client'));
 
 
 
-app.use('/', userLogin);
 
 // passport config
 passport.use(new LocalStrategy(UserNamePassword.authenticate()));
 passport.serializeUser(UserNamePassword.serializeUser());
 passport.deserializeUser(UserNamePassword.deserializeUser());
 
+app.use('/', userLogin);
 app.get('/:user/list', function (req, res) {
   res.status(200).end();
 });
