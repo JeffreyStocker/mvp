@@ -71,7 +71,9 @@ passport.use(new LocalStrategy(UserNamePassword.authenticate()));
 passport.serializeUser(UserNamePassword.serializeUser());
 passport.deserializeUser(UserNamePassword.deserializeUser());
 
-
+app.get('/:user/list', function (req, res) {
+  res.status(200).end();
+});
 
 
 
