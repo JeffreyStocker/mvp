@@ -4,7 +4,7 @@ var locations = {
   'uluru': {lat: 37.73242, lng: -122.43425 }
 };
 var markers = [];
-var map, autocomplete, autocomplete2;
+var map;
 
 var userLocation = function (cb) {
   if (navigator.geolocation) {
@@ -24,8 +24,6 @@ var initGoogle = function() { //places a marker in the map
       zoom: 11,
       center: location
     });
-    autoComInit();
-    workAutoComplete();
   });
   // map = new google.maps.Map(document.getElementById('map'), {
   //   zoom: 11,
@@ -139,25 +137,6 @@ $('document').ready(function () {
 
 /////// playing with google autocomplete////////////////////////////
 
-var autoComInit = function () {
-  autocomplete = new google.maps.places.Autocomplete(
-    /** @type {!HTMLInputElement} */(document.getElementById('autocompleteHome')),
-    {types: ['geocode']});
-
-  // When the user selects an address from the dropdown, populate the address
-  // fields in the form.
-  // autocomplete.addListener('place_changed', fillInAddress);
-};
-
-var workAutoComplete = function () {
-  autocomplete2 = new google.maps.places.Autocomplete(
-    /** @type {!HTMLInputElement} */(document.getElementById('autocompleteWork')),
-    {types: ['geocode']});
-
-  // When the user selects an address from the dropdown, populate the address
-  // fields in the form.
-  // autocomplete.addListener('place_changed', fillInAddress);
-};
 
 // var placeSearch, autocomplete;
 // var componentForm = {

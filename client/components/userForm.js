@@ -1,8 +1,9 @@
 angular.module('app').component ('userform', {
-  binding: {
+  bindings: {
     form: '='
   },
   controller: function ($post, $scope, $useGet) {
+    var ctrl = this;
     $scope.submitDataToServer = function (data) {
       console.log ('POST sent data', data);
       $post.postData(data)
@@ -25,6 +26,19 @@ angular.module('app').component ('userform', {
           console.log('catch error', error);
         });
     };
+
+    ctrl.$postLink = function () {
+      new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */(document.getElementById('autocompleteHome')),
+        {types: ['geocode']});
+      new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */(document.getElementById('autocompleteWork')),
+        {types: ['geocode']});
+    };
   },
   templateUrl: 'templates/form.html'
 });
+
+// When the user selects an address from the dropdown, populate the address
+// fields in the form.
+// autocomplete.addListener('place_changed', fillInAddress);
