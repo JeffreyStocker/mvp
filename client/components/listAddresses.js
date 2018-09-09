@@ -3,12 +3,9 @@ angular.module('app').component('listAddresses', {
     user: '<'
   },
   controller: function ($http) {
-  // console.log('test',$getData)
     var ctrl = this;
     ctrl.$onInit = function () {
-      console.log('test onInit');
       if (ctrl.user) {
-        console.log (ctrl.user);
         $http.get('/' + ctrl.user.username + '/list')
           .then (({data}) => {
 
@@ -18,8 +15,6 @@ angular.module('app').component('listAddresses', {
           });
       }
     };
-    console.log (ctrl.user);
-
   },
 
   template:
