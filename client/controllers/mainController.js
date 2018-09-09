@@ -17,9 +17,19 @@ var app = angular.module('app', [])
         var createHiddenAPI = document.createElement('script');
         createHiddenAPI.src = 'https://maps.googleapis.com/maps/api/js?key=' + key + '&callback=initGoogle&libraries=places';
         document.getElementsByTagName('head')[0].appendChild(createHiddenAPI);
+
       })
       .catch (err => {
-        console.log ('Error Retrieving Key', err);
+        console.log ('Error Retrieving google Key', err);
+      });
+    $http.get('./login')
+      .then (data => {
+        if (data.data) {
+          ctrl.user = data.data;
+        }
+      })
+      .catch (err => {
+        console.log ('error getting user information');
       });
 
   })
