@@ -23,7 +23,7 @@ angular.module('app').component('login', {
     $http.post('login', user)
       .then((data) => {
         console.log('login:', data);
-        ctrl.user = data.data.user;
+        ctrl.user = data.data;
         resetLoginInfo();
       })
       .catch (err => {
