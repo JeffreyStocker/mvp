@@ -1,12 +1,38 @@
-angular.module('app').component('list', {
+angular.module('app').component('listAddresses', {
   bindings: {
-    name: '<'
+    user: '<'
   },
-  controller: function ($getData, $post) {
+  controller: function ($http) {
   // console.log('test',$getData)
-    $post.postData();
+    var ctrl = this;
+    ctrl.$onInit = function () {
+      console.log('test onInit');
+      if (ctrl.user) {
+        console.log (ctrl.user);
+        $http.get('/' + ctrl.user.username + '/list')
+          .then (({data}) => {
+
+          })
+          .catch (err => {
+            console.log('error, listAddress', err);
+          });
+      }
+    };
+    console.log (ctrl.user);
+
   },
 
-  template: '<div></div>',
-  // template: "<div>i'm here {{name}} {{$ctrl.name}} </div>",
+  template:
+  `
+  listofAddress
+  <div>
+    <ul>
+    </ul>
+  </div>
+  `,
 });
+
+/*
+      <li ng-repeat="(key, value) in myobj">{{value}}</li>
+
+*/

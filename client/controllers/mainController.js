@@ -10,6 +10,7 @@ var app = angular.module('app', [])
   // }
     var ctrl = this;
     ctrl.user = null;
+    ctrl.currentView = 'default';
 
   })
   .component('app', {
@@ -18,12 +19,20 @@ var app = angular.module('app', [])
     template:
   `
   <title-bar user="$ctrl.user"></title-bar>
-  <map></map>
   <h2> See Who is Around You! </h2>
-  <div>
-    <userform >userForm Loading</userform>
-  <div> `
+
+  <map></map>
+  <list-views current-view="$ctrl.currentView" user="$ctrl.user"> </list-views>
+  <main-view current-view="$ctrl.currentView" user="$ctrl.user" ></main-view>
+  `
   });
 
 //  <list name="$ctrl.name"> List Loading </list>
 // <showselecteduser> </showselecteduser>
+
+/*
+  <userform >userForm Loading</userform>
+
+
+
+*/
