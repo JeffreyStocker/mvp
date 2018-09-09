@@ -7,7 +7,8 @@
     "start": "node ./server/app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "nodemon": "nodemon  --ignore client/ --ignore node_modules/ --delay 1 --inspect --trace-warnings ./server/app.js NODE_ENV=development ",
-    "live-server": "live-server -- --port=8000"
+    "live-server": "live-server -- --port=8000",
+    "install": "bower install"
   },
   "author": "Jeffrey Stocker",
   "license": "ISC",
