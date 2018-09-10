@@ -2,8 +2,20 @@ var request = require('request-promise');
 // var api = require('../../api.js');
 
 const reverseGeo = function (lat, lng) {
-  return googleMaps.reverseGeocode({
-    latlng: [lat, lng],
+  const options = {
+    method: 'GET',
+    uri: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.googleGeoCodingKey}`
+  };
+
+  return new Promise ((resolve, revoke) => {
+    request(options)
+      .then(data => {
+        var parsedData = JSON.parse(data);
+        parsedData.error_message ? revoke (parsedData) : resolve (parsedData);
+      })
+      .catch((error) => {
+        revoke(error);
+      });
   });
 };
 
@@ -85,4 +97,5 @@ const middleRetrieveAddressFromGoogle = function (req, res, next) {
 
 module.exports = {
   middleRetrieveAddressFromGoogle,
+  reverseGeo
 };
