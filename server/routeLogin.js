@@ -33,7 +33,7 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/login', function(req, res) {
-  console.log('login', req.user);
+  console.log('login', req.user.username);
 
   if (req.user) {
     return res.status(200).send(stripUserOfPrivateInfo(req.user));
@@ -43,7 +43,7 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
-  console.log('post register', req.user);
+  console.log('post register', req.user.username);
 
   res.status(200).send(stripUserOfPrivateInfo(req.user));
 });
