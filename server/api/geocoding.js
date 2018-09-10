@@ -3,56 +3,56 @@ var request = require('request-promise');
 
 var latToMiles = function (lat) {
   return lat * ((69.407 + 68.703) / 2);
-}
+};
 
 var longToMiles = function (long, lat) {
   return lat * ((69.407 + 68.703) / 2);
-}
+};
 
 // // https://www.movable-type.co.uk/scripts/latlong.html
-var findDistanceOverSphere = function  (lat1, lon1, lat2, lon2) {
+var findDistanceOverSphere = function (lat1, lon1, lat2, lon2) {
   var R = 6371e3; // metres
   var φ1 = lat1.toRadians();
   var φ2 = lat2.toRadians();
-  var Δφ = (lat2-lat1).toRadians();
-  var Δλ = (lon2-lon1).toRadians();
+  var Δφ = (lat2 - lat1).toRadians();
+  var Δλ = (lon2 - lon1).toRadians();
 
-  var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+  var a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
           Math.cos(φ1) * Math.cos(φ2) *
-          Math.sin(Δλ/2) * Math.sin(Δλ/2);
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+          Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
   var d = R * c;
   return d;
-}
+};
 
 var exactDistanceInMiles = function (lat1, lon1, lat2, lon2) {
   var sin = Math.sin;
   var arccos = Math.acos;
   var cos = Math.cos;
 
-  return 3958.75 * arccos[sin(lat1/57.2958) *
-  sin(lat2/57.2958) +
-  cos(lat1/57.2958) *
-  cos(lat2/57.2958) *
-  cos(lon2/57.2958 - lon1/57.2958)]
-}
+  return 3958.75 * arccos[sin(lat1 / 57.2958) *
+  sin(lat2 / 57.2958) +
+  cos(lat1 / 57.2958) *
+  cos(lat2 / 57.2958) *
+  cos(lon2 / 57.2958 - lon1 / 57.2958)];
+};
 console.log(
   // findDistanceOverSphere (1,1,2,2)
-)
+);
 
 module.exports.getAddress = function (address, latlng, place_id) {
   //note: location is a string with lat lng seperated by ,
   var searchString;
-  console.log(arguments)
+  console.log(arguments);
   return new Promise((resolve, revoke) => {
-    if (!address && !latlng && !place_id) { revoke('Error: getAddress: No Information given.') }
+    if (!address && !latlng && !place_id) { revoke('Error: getAddress: No Information given.'); }
     if (!!address) {
-      searchString = 'address=' + address
+      searchString = 'address=' + address;
     } else if (!!latlng) {
-      searchString = 'latlng=' + latlng
+      searchString = 'latlng=' + latlng;
     } else {
-      searchString = 'place_id=' + place_id
+      searchString = 'place_id=' + place_id;
     }
 
     // var searchString = [address, latlng , place_id].filter(element => !!element).join('&')
@@ -60,7 +60,7 @@ module.exports.getAddress = function (address, latlng, place_id) {
     const options = {
       method: 'GET',
       uri: `https://maps.googleapis.com/maps/api/geocode/json?${searchString}&key=${process.env.googleGeoCodingKey}`
-    }
+    };
     request(options)
       .then(data => {
         // console.log('data', data)
@@ -68,49 +68,49 @@ module.exports.getAddress = function (address, latlng, place_id) {
         parsedData.error_message ? revoke (parsedData) : resolve (parsedData);
       })
       .catch((error) => {
-        revoke(error)
-      })
+        revoke(error);
+      });
 
-  })
-}
+  });
+};
 
 
-module.exports.processAddressObject = function  (addressObject) {
+module.exports.processAddressObject = function (addressObject) {
 
-}
+};
 
 module.exports.middleRetrieveAddressFromGoogle = function (req, res, next) {
-  console.log('geocoding runing')
+  console.log('geocoding runing');
   var body = req.body;
 
   if (body.homeAddress) {
     module.exports.getAddress(body.homeAddress, null, null)
       .then(results => {
-        req.body.homeAddress_geolocation = results
-        console.log(results)
+        req.body.homeAddress_geolocation = results;
+        console.log(results);
       })
       .then (() => {
         if (body.workAddress) {
-          console.log('finding work address')
+          console.log('finding work address');
           module.exports.getAddress(body.workAddress, null, null)
             .then(results => {
               if (results.error_message) {
                 throw new Error (results.error_message);
               }
-              req.body.workAddress_geolocation = results
-              console.log(results)
-              next()
+              req.body.workAddress_geolocation = results;
+              console.log(results);
+              next();
             })
             .catch(err => {
-              console.log ('error')
+              console.log ('error');
             })
             .then (() => {
               // console.log('req.geolocation ', req.body.workAddress_geolocation)
               // console.log('next runs')
-              next()
-            })
+              next();
+            });
         } else {
-          next()
+          next();
         }
       })
       .catch(err => {
@@ -119,4 +119,4 @@ module.exports.middleRetrieveAddressFromGoogle = function (req, res, next) {
         return;
       });
   }
-}
+};
