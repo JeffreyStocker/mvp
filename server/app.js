@@ -9,8 +9,10 @@ var middleware = require('./middleware/middleware.js');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
+var databaseInit = require ('./database/databaseInit');
 var geocoding = require('./api/geocoding.js');
 var userLogin = require ('./routeLogin');
+const routeUser = require ('./routeUser');
 
 const passport = require ('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -71,9 +73,7 @@ passport.serializeUser(UserNamePassword.serializeUser());
 passport.deserializeUser(UserNamePassword.deserializeUser());
 
 app.use('/', userLogin);
-app.get('/:user/list', function (req, res) {
-  res.status(200).end();
-});
+app.use('/user', routeUser);
 
 
 

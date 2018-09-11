@@ -1,25 +1,5 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var mongodb = require('mongodb');
-if (process.env.dbURI) {
-  var dbLocation = process.env.dbURI;
-} else {
-  throw new Error ('Database location must be included in .env file or passed in as a env variable');
-}
-
-mongoose.Promise = require ('bluebird');
-
-mongoose.connect(dbLocation, {useNewUrlParser: true, autoIndex: true})
-  .then ((status) => {
-    console.log ('db successful connected');
-  })
-  .catch(err=> {
-    console.log('db connect error: ', err);
-    // console.log ('db connect error')
-  });
-mongoose.set('useCreateIndex', true);
-
-
 /// work in progress basic ideas
 var carpoolSchema = new Schema ({
   username: {type: String, unique: true},
@@ -84,8 +64,5 @@ module.exports.middleReturnAll = function (req, res, next) {
       req.body.data = data;
       next();
     }
-
   });
-
-
 };
