@@ -9,7 +9,7 @@ if (process.env.dbURI) {
 
 mongoose.Promise = require ('bluebird');
 
-mongoose.connect(dbLocation, {useMongoClient: true, autoIndex: true})
+mongoose.connect(dbLocation, {useNewUrlParser: true, autoIndex: true})
   .then ((status) => {
     console.log ('db successful connected');
   })
@@ -17,6 +17,7 @@ mongoose.connect(dbLocation, {useMongoClient: true, autoIndex: true})
     console.log('db connect error: ', err);
     // console.log ('db connect error')
   });
+mongoose.set('useCreateIndex', true);
 
 
 /// work in progress basic ideas
