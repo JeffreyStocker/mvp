@@ -15,10 +15,6 @@ var userSessionStorage = new mongodbSession({
   collection: 'AccountSession'
 });
 
-userSessionStorage.on('err', function (err) {
-  console.log (err)
-});
-
 var databaseInit = require ('./database/databaseInit');
 var geocoding = require('./api/geocoding.js');
 var userLogin = require ('./routeLogin');
@@ -90,7 +86,9 @@ app.use('/', userLogin);
 app.use('/user', routeUser);
 
 
-
+userSessionStorage.on('error', function (err) {
+  console.log (err);
+});
 
 
 
