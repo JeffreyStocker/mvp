@@ -19,6 +19,8 @@ var databaseInit = require ('./database/databaseInit');
 var geocoding = require('./api/geocoding.js');
 var userLogin = require ('./routeLogin');
 const routeUser = require ('./routeUser');
+const routeRegister = require ('./routeRegister');
+const routeLogout = require ('./routeLogout');
 
 const passport = require ('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -72,17 +74,27 @@ app.use(expressSession({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static('client'));
-
-
-
 
 // passport config
 passport.use(new LocalStrategy(UserNamePassword.authenticate()));
 passport.serializeUser(UserNamePassword.serializeUser());
 passport.deserializeUser(UserNamePassword.deserializeUser());
+app.use(express.static('client'));
+app.use('/login', userLogin);
+app.user('/register', routeRegister);
+app.user('/logout', routeLogout);
+app.use(function (req, res, next) {
+  if (req.user) {
+    req.user.hash = undefined;
+    req.user.salt = undefined;
+  }
+});
 
-app.use('/', userLogin);
+app.get('/ping', function(req, res) {
+  res.status(200).send('pong!');
+});
+
+
 app.use('/user', routeUser);
 
 
