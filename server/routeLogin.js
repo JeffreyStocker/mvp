@@ -3,6 +3,7 @@ var passport = require('passport');
 var Account = require('./database/userNamePassword');
 var UserDatabase = require ('./database/database');
 var router = express.Router();
+var {User} = require ('./database/databaseUser');
 
 var stripUserOfPrivateInfo = function (user) {
   user.hash = undefined;
@@ -25,6 +26,7 @@ router.post('/register', function(req, res) {
       console.log('err:', err);
       res.status(401).send('User Already Exists');
     } else {
+      let user = new User({username: req.user.username}).save();
       passport.authenticate('local')(req, res, function () {
         res.status(200).send({user: stripUserOfPrivateInfo(req.user)});
       });
@@ -33,9 +35,9 @@ router.post('/register', function(req, res) {
 });
 
 router.get('/login', function(req, res) {
-  console.log('login', req.user.username);
 
   if (req.user) {
+    console.log('login', req.user.username);
     return res.status(200).send(stripUserOfPrivateInfo(req.user));
   }
   res.status(401).end();
