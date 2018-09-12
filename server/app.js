@@ -8,6 +8,16 @@ var request = require('request');
 var middleware = require('./middleware/middleware.js');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+const expressSession = require('express-session');
+const mongodbSession = require ('connect-mongodb-session')(expressSession);
+var userSessionStorage = new mongodbSession({
+  uri: process.env.dbURI,
+  collection: 'AccountSession'
+});
+
+userSessionStorage.on('err', function (err) {
+  console.log (err)
+});
 
 var databaseInit = require ('./database/databaseInit');
 var geocoding = require('./api/geocoding.js');
@@ -55,10 +65,14 @@ app.get ('/key', (req, res) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(require('express-session')({
+app.use(expressSession({
   secret: 'keyboard cat',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1 * 1000 * 60 * 60 * 24 * 7,
+  },
+  store: userSessionStorage
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -74,6 +88,7 @@ passport.deserializeUser(UserNamePassword.deserializeUser());
 
 app.use('/', userLogin);
 app.use('/user', routeUser);
+
 
 
 
