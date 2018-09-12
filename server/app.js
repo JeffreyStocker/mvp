@@ -81,8 +81,8 @@ passport.serializeUser(UserNamePassword.serializeUser());
 passport.deserializeUser(UserNamePassword.deserializeUser());
 app.use(express.static('client'));
 app.use('/login', userLogin);
-app.user('/register', routeRegister);
-app.user('/logout', routeLogout);
+app.use('/register', routeRegister);
+app.use('/logout', routeLogout);
 app.use(function (req, res, next) {
   if (req.user) {
     req.user.hash = undefined;
