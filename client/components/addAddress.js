@@ -19,7 +19,7 @@ angular.module('app').component('addAddress', {
 }).controller('addAddress', function ($scope, $http) {
   var ctrl = this;
   ctrl.uploadAddress = function (address) {
-    $http.post('/user/address', {user: ctrl.user, address} )
+    $http.post(`/user/${ctrl.user.username}/address`, {user: ctrl.user, address} )
       .then (({data: results}) => {
         console.log(results);
       })
