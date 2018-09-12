@@ -1,7 +1,7 @@
 var request = require('request-promise');
 // var api = require('../../api.js');
 
-const reverseGeo = function (lat, lng) {
+const getReverseGeo = function (lat, lng) {
   const options = {
     method: 'GET',
     uri: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.googleGeoCodingKey}`
@@ -17,6 +17,10 @@ const reverseGeo = function (lat, lng) {
         revoke(error);
       });
   });
+};
+
+const reverseGeo = function (lat, lng) {
+  return getReverseGeo(lat, lng);
 };
 
 const getAddress = function (address, latlng, place_id) {
