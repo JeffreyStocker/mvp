@@ -11,18 +11,30 @@ var stripUserOfPrivateInfo = function (user) {
   return user;
 };
 
+var returnUser = function (req, res) {
+  User.findOne({username: req.user.username})
+    .then(user => {
+      res.status(200).send(user);
+    })
+    .catch(err => {
+      res.status(400).send(err);
+    });
+};
+
 router.route('/')
-  .all(function (req, res) {
+  .get(function(req, res, next) {
     if (req.user) {
-      User.findOne({username: req.user.username})
-        .then(user => {
-          console.log('post register', user.username);
-          res.status(200).send(user);
-        });
-    } else {
-      res.status(401).end();
+      console.log('login', req.user.username);
+      return next();
     }
-  });
+    res.status(401).end();
+  })
+  .post(passport.authenticate('local'), function(req, res, next) {
+    console.log('user Logged in:', req.user.username);
+    return next();
+  })
+  .all(returnUser);
+
 
 
 
