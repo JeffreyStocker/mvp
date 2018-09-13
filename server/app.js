@@ -21,6 +21,7 @@ var userLogin = require ('./routeLogin');
 const routeUser = require ('./routeUser');
 const routeRegister = require ('./routeRegister');
 const routeLogout = require ('./routeLogout');
+const routeAddresss = require ('./routes/routesAddress');
 
 const passport = require ('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -83,19 +84,20 @@ app.use(express.static('client'));
 app.use('/login', userLogin);
 app.use('/register', routeRegister);
 app.use('/logout', routeLogout);
-app.use(function (req, res, next) {
-  if (req.user) {
-    req.user.hash = undefined;
-    req.user.salt = undefined;
-  }
-});
+app.use('/user', routeUser);
+app.use('/address', routeAddresss);
+// app.use(function (req, res, next) {
+//   if (req.user) {
+//     req.user.hash = undefined;
+//     req.user.salt = undefined;
+//   }
+// });
 
 app.get('/ping', function(req, res) {
   res.status(200).send('pong!');
 });
 
 
-app.use('/user', routeUser);
 
 
 userSessionStorage.on('error', function (err) {

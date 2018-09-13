@@ -1,12 +1,13 @@
 var request = require('request-promise');
-// var api = require('../../api.js');
+var Address = require('../database/databaseAddress').Address;
+var thirtyDays = 1000 * 60 * 60 * 24 * 30;
+
 
 const getReverseGeo = function (lat, lng) {
   const options = {
     method: 'GET',
     uri: `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.googleGeoCodingKey}`
   };
-
   return new Promise ((resolve, revoke) => {
     request(options)
       .then(data => {
@@ -23,7 +24,61 @@ const reverseGeo = function (lat, lng) {
   return getReverseGeo(lat, lng);
 };
 
-const getAddress = function (address, latlng, place_id) {
+const getAddress = function (address) {
+  return new Promise ((resolve, revoke) => {
+    Address.findOne({formatted_address: address})
+      .then(doc => {
+        if (!doc) {
+          return getGeocoding(address)
+            .then(results => {
+              if (results) {
+                return new Address (results).save();
+              }
+            });
+        } else if (doc.updated.valueOf() < (Date.now() - thirtyDays)) {
+          return getGeocoding(doc.formatted_address)
+            .then(returnedFromGoogleDoc => {
+              Object.assign (doc, returnedFromGoogleDoc, {updated: new Date()});
+              return Address.where({place_id: doc.place_id}).updateOne(doc)
+                .then (results => {
+                  return doc;
+                });
+            });
+        } else {
+          return doc;
+        }
+      })
+      .then (doc => {
+        resolve (doc);
+      })
+      .catch (err => {
+        revoke (err);
+      });
+  });
+};
+
+const postAddress = function (address) {
+  return new Promise ((resolve, revoke) => {
+    Address.find({formatted_address: address})
+      .then(doc => {
+        if (doc === null) {
+          return new Address(req.body).save();
+        }
+        return doc;
+      })
+      .then((doc) => {
+        return resolve (doc);
+      })
+      .then (doc => {
+        return res.status(200).send(doc);
+      })
+      .catch (err => {
+
+      });
+  });
+};
+
+const getGeocoding = function (address, latlng, place_id) {
   //note: location is a string with lat lng seperated by ,
   var searchString;
   console.log(arguments);
@@ -47,7 +102,7 @@ const getAddress = function (address, latlng, place_id) {
       .then(data => {
         // console.log('data', data)
         var parsedData = JSON.parse(data);
-        parsedData.error_message ? revoke (parsedData) : resolve (parsedData);
+        parsedData.error_message ? revoke (parsedData) : resolve (parsedData.results[0]);
       })
       .catch((error) => {
         revoke(error);
@@ -61,7 +116,7 @@ const middleRetrieveAddressFromGoogle = function (req, res, next) {
   var body = req.body;
 
   if (body.homeAddress) {
-    getAddress(body.homeAddress, null, null)
+    getGeocoding(body.homeAddress, null, null)
       .then(results => {
         req.body.homeAddress_geolocation = results;
         console.log(results);
@@ -69,7 +124,7 @@ const middleRetrieveAddressFromGoogle = function (req, res, next) {
       .then (() => {
         if (body.workAddress) {
           console.log('finding work address');
-          getAddress(body.workAddress, null, null)
+          getGeocoding(body.workAddress, null, null)
             .then(results => {
               if (results.error_message) {
                 throw new Error (results.error_message);
@@ -101,5 +156,8 @@ const middleRetrieveAddressFromGoogle = function (req, res, next) {
 
 module.exports = {
   middleRetrieveAddressFromGoogle,
-  reverseGeo
+  reverseGeo,
+  getGeocoding,
+  getAddress,
+  postAddress
 };

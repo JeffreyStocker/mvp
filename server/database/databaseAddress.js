@@ -2,11 +2,29 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var addressSchema = new Schema ({
-  address: {type: String, unique: true},
-  latLong: Array,
-  approxLatLong: Array,
-  googleGeoLoc: Array,
+  address_components: [],
+  formatted_address: String,
+  geometry: Object,
+  place_id: String,
+  types: Array,
   updated: { type: Date, default: Date.now }
+
+  // address: {type: String, unique: true},
+  // latLong: Array,
+  // approxLatLong: Array,
+  // googleGeoLoc: Array,
+});
+// var addressSchema = new Schema ({
+//   address: {type: String, unique: true},
+//   latLong: Array,
+//   approxLatLong: Array,
+//   googleGeoLoc: Array,
+//   updated: { type: Date, default: Date.now }
+// });
+
+addressSchema.pre('save', function (next) {
+  this.updated = new Date();
+  next();
 });
 
 var Address = mongoose.model('address', addressSchema);
