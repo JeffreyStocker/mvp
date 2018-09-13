@@ -20,7 +20,7 @@ router.route('/')
           let user = new User({username: req.body.username}).save()
             .then(results => {
               console.log('results:', results);
-              res.status(200).send({user: user});
+              res.status(200).send({user: results});
             });
         });
       }
