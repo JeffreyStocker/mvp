@@ -6,7 +6,9 @@ var addressSchema = new Schema ({
   formatted_address: String,
   geometry: Object,
   place_id: String,
-  types: Array,
+  types: {
+    type: Array
+  },
   updated: { type: Date, default: Date.now },
   latLong: Array,
 
