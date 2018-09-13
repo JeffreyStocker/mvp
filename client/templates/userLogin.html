@@ -1,23 +1,23 @@
-<div>
-  <div ng-if="$ctrl.user">
+<div id="login">
+  <div class="" ng-if="$ctrl.user">
     <h4> Hi {{$ctrl.user.username}}!</h4>
     <button ng-click="$ctrl.logout()" value="loginInfo"> Logout </button>
   </div>
-  <div ng-if="!$ctrl.user">
+  <div class="table" ng-if="!$ctrl.user">
     <!-- <span> LogIn </span> -->
-    <form class="floatRight" name="login">
-      <div ng-if="$ctrl.error.general"> {{$ctrl.error.general}} </div>
-      <div>
-          <label >Username:</label>
-          <input ng-model='$ctrl.loginInfo.username' type="text" name="username"/>
-          <div ng-if="$ctrl.error.username"> Invalid Username: {{$ctrl.error.username}} </div>
+    <form class="t-row" class="floatRight" name="login">
+      <div class="t-cell" ng-if="$ctrl.error.general"> {{$ctrl.error.general}} </div>
+      <div class="t-row">
+          <label class="t-cell">Username:</label>
+          <input class="t-cell" ng-model='$ctrl.loginInfo.username' type="text" name="username"/>
+          <div class="t-cell" ng-if="$ctrl.error.username"> Invalid Username: {{$ctrl.error.username}} </div>
           <!-- <input ng-model='email' type="email" name="email"/>
           <span ng-show="login.myAddress.$error.email">Not a valid e-mail address</span> -->
       </div>
-      <div>
-          <label >Password:</label>
-          <input ng-model='$ctrl.loginInfo.password' type="password" name="password"/>
-          <div ng-if="$ctrl.error.password"> Invalid Password: {{$ctrl.error.password}} </div>
+      <div class="t-row">
+          <label class="t-cell">Password:</label>
+          <input class="t-cell" ng-model='$ctrl.loginInfo.password' type="password" name="password"/>
+          <div class="t-cell" ng-if="$ctrl.error.password"> Invalid Password: {{$ctrl.error.password}} </div>
       </div>
       <div>
           <button ng-click="$ctrl.login($ctrl.loginInfo)"  value="Log In"> Login </button>

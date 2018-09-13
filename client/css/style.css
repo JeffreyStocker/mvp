@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   padding: 10px
 }
@@ -40,4 +44,39 @@ button {
 
 .login {
   right: 0px;
+}
+
+.list-of-address td{
+ margin: 2px;
+}
+
+.selected {
+  background-color: green;
+}
+
+#login *{
+  margin: 2px;
+}
+
+#login button {
+  width: 80px;
+  margin: 2px 2px 2px 0px;
+  display: inline-flex;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.table {
+  display: table
+}
+
+.t-row {
+  display: table-row;
+}
+.t-column {
+  display: table-column;
+}
+
+.t-cell {
+  display: table-cell;
 }

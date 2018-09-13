@@ -1,25 +1,28 @@
 angular.module('app').component('addAddress', {
   controller: 'addAddress',
   bindings: {
-    user: '<'
+    user: '='
   },
-  template: `
-  <form name="addAddress">
-    <div>
-      Name: <input type="text" name="title" ng-model="address.name" />
-    </div>
-    <div>
-      Address: <input id="addAddress" type="text" ng-model="address.address" />
-    </div>
-    <div>
-      <button ng-click="uploadAddress(address)">Add Address</button>
-    </div>
-  </form>
-  `,
+  template:
+    `<table name="addAddress">
+      <tr>
+        <td>Name:  </td>
+        <td><input type="text" name="title" default="a" ng-model="$ctrl.address.name" /></td>
+      </tr>
+      <tr>
+        <td>Address: </td>
+        <td><input id="addAddress" type="text" default="1431 Nestwood Way, Milpitas, CA, USA" ng-model="$ctrl.address.address" /> </td>
+      </tr>
+    </table>
+    <button ng-click="$ctrl.uploadAddress(address)">Add Address</button>`,
 }).controller('addAddress', function ($scope, $http) {
   var ctrl = this;
+  ctrl.address = {
+    name: 'a',
+    address: '1431 Nestwood Way, Milpitas, CA, USA'
+  };
   ctrl.uploadAddress = function (address) {
-    $http.post(`/user/${ctrl.user.username}/address`, {user: ctrl.user, address} )
+    $http.post(`/user/${ctrl.user.username}/address`, {user: ctrl.user, address: ctrl.address} )
       .then (({data: results}) => {
         console.log(results);
       })
