@@ -81,7 +81,6 @@ const postAddress = function (address) {
 const getGeocoding = function (address, latlng, place_id) {
   //note: location is a string with lat lng seperated by ,
   var searchString;
-  console.log(arguments);
   return new Promise((resolve, revoke) => {
     if (!address && !latlng && !place_id) { revoke('Error: getAddress: No Information given.'); }
     if (!!address) {
