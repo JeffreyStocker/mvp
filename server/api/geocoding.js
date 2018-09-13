@@ -32,7 +32,7 @@ const getAddress = function (address) {
           return getGeocoding(address)
             .then(results => {
               if (results) {
-                return new Address (results).save();
+                return Address.findOneAndUpdate({place_id: results.place_id}, results, {upsert: true});
               }
             });
         } else if (doc.updated.valueOf() < (Date.now() - thirtyDays)) {
