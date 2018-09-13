@@ -12,19 +12,16 @@ var stripUserOfPrivateInfo = function (user) {
 };
 
 router.route('/')
-  // .get(function(req, res) {
-  //   if (req.user) {
-  //     console.log('login', req.user.username);
-  //     return res.status(200).send(stripUserOfPrivateInfo(req.user));
-  //   }
-  //   res.status(401).end();
-  // })
-  .post(passport.authenticate('local'), function(req, res) {
-    User.findOne({username: req.user.username})
-      .then(user => {
-        console.log('post register', user.username);
-        res.status(200).send(user);
-      });
+  .all(function (req, res) {
+    if (req.user) {
+      User.findOne({username: req.user.username})
+        .then(user => {
+          console.log('post register', user.username);
+          res.status(200).send(user);
+        });
+    } else {
+      res.status(401).end();
+    }
   });
 
 
