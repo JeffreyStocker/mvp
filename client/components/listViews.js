@@ -5,11 +5,11 @@ angular.module('app').component('listViews', {
   },
   controller: 'listViewCtrl',
   template: `
-  <div ng-if="$ctrl.user">
-    <span ng-click="$ctrl.updateView('addAddress')">Add Address</span>&nbsp
-    <span ng-click="$ctrl.updateView('listAddress')">List Addresses</span>&nbsp
-    <span ng-click="$ctrl.updateView('routes')">Routes</span>&nbsp
-    <span ng-click="$ctrl.updateView('userform')">userform</span>&nbsp
+  <div class="listViews" ng-if="$ctrl.user">
+    <a ng-click="$ctrl.updateView('addAddress')" ng-class="{selected: $ctrl.currentView === 'addAddress'}">Add Address</a>&nbsp
+    <a ng-click="$ctrl.updateView('listAddress')" ng-class="{selected: $ctrl.currentView === 'listAddress'}">List Addresses</a>&nbsp
+    <a ng-click="$ctrl.updateView('routes')" ng-class="{selected: $ctrl.currentView === 'routes'}">Routes</a>&nbsp
+    <a ng-click="$ctrl.updateView('userform')" ng-class="{selected: $ctrl.currentView === 'userform'}">userform</a>&nbsp
   </div>
   `
 }).controller('listViewCtrl', function () {
