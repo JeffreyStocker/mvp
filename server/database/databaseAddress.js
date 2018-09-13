@@ -7,20 +7,13 @@ var addressSchema = new Schema ({
   geometry: Object,
   place_id: String,
   types: Array,
-  updated: { type: Date, default: Date.now }
+  updated: { type: Date, default: Date.now },
+  latLong: Array,
 
   // address: {type: String, unique: true},
-  // latLong: Array,
   // approxLatLong: Array,
   // googleGeoLoc: Array,
 });
-// var addressSchema = new Schema ({
-//   address: {type: String, unique: true},
-//   latLong: Array,
-//   approxLatLong: Array,
-//   googleGeoLoc: Array,
-//   updated: { type: Date, default: Date.now }
-// });
 
 addressSchema.pre('save', function (next) {
   this.updated = new Date();
@@ -29,13 +22,6 @@ addressSchema.pre('save', function (next) {
 
 var Address = mongoose.model('address', addressSchema);
 
-const get = function (address) {
-  return Address.findOne({address});
-};
-
-const post = function () {
-  return Address;
-};
 
 const getWithin = function (lat, lng, range) {
   return Address.where('address').within().circle({center: [lat, lng], maxDistance: range, spherical: true}).then();
