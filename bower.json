@@ -5,7 +5,7 @@
   "authors": [
     "Jeffrey Stocker"
   ],
-  "directory": "./client/bower_components",
+  "directory": "/client/bower_components",
   "license": "ISC",
   "homepage": "",
   "private": true,
@@ -21,6 +21,7 @@
     "angular-route": "^1.6.6",
     "bootstrap": "^3.3.7",
     "jquery": "^3.2.1",
-    "angular-animate": "^1.7.4"
+    "angular-animate": "^1.7.4",
+    "angular-drag-and-drop-lists": "^2.1.0"
   }
 }
