@@ -11,9 +11,9 @@ router.route('/:username/address')
   .get(function (req, res) {
     if (req.user) {
       User.findOne({username: req.params.username})
-        .populate('address')
+        .populate('addresses.address')
         .then((user) =>{
-          res.status(200).send(user.addresses);
+          res.status(200).json(user.addresses);
         })
         .catch(err => {
           res.status(500).send(err);
@@ -30,11 +30,12 @@ router.route('/:username/address')
     Promise.all([User.findOne({username: req.params.username}), getAddress(req.body.address.address)])
       .then(([user, address]) => {
         userData = user;
-        if (user.addresses[0] === null) {
-          user.addresses.pop();
+        if (user.addresses.names[0] === null) {
+          user.addresses.names.pop();
+          user.addresses.address.pop();
         }
-        user.addresses.push([req.body.address.name, address]);
-        user.addressesNames.push(req.body.addressname);
+        user.addresses.address.push(address._id);
+        user.addresses.names.push(req.body.address.name);
         return user.save();
       })
       .then(() => {

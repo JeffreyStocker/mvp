@@ -13,6 +13,7 @@ var stripUserOfPrivateInfo = function (user) {
 
 var returnUser = function (req, res) {
   User.findOne({username: req.user.username})
+    .populate('addresses.address')
     .then(user => {
       res.status(200).send(user);
     })

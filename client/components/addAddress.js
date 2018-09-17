@@ -23,8 +23,13 @@ angular.module('app').component('addAddress', {
   };
   ctrl.uploadAddress = function (address) {
     $http.post(`/user/${ctrl.user.username}/address`, {user: ctrl.user, address: ctrl.address} )
-      .then (({data: results}) => {
-        console.log(results);
+      .then (({data}) => {
+
+        // ctrl.user.addresses = data.names.map((name, index) => {
+        //   return [name, data.addresses[index]];
+        // });
+        ctrl.user.addresses = data;
+        console.log(ctrl.user.addresses);
       })
       .catch (err => {
         console.log('err addAddress: ', err);

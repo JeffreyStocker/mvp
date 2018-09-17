@@ -3,9 +3,8 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
   username: {type: String, unique: true},
-  addresses: [[String, {type: Schema.Types.ObjectId, ref: 'Address'}]],
-  addressesNames: [String],
-  routes: [{}]
+  addresses: {names: [String], address: [{type: Schema.Types.ObjectId, ref: 'address'}]},
+  routes: [{type: Schema.Types.ObjectId, ref: 'Route'}]
 });
 
 var User = mongoose.model ('User', userSchema);
